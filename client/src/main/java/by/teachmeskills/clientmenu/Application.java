@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class Client {
+public class Application {
     public static void main(String[] args) throws MerchantNotFoundException, NoBankAccountsFoundException, BankAccountNotFoundException {
         boolean exitFlag = false;
         Scanner scanner = new Scanner(System.in);
