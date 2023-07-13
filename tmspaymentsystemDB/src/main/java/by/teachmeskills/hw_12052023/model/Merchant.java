@@ -1,12 +1,10 @@
 package by.teachmeskills.hw_12052023.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class Merchant {
     private String id;
     private String name;
-    private List<BankAccount> bankAccounts;
     private LocalDateTime createdAt;
 
     public Merchant(String id, String name, LocalDateTime createdAt) {
@@ -31,14 +29,6 @@ public class Merchant {
         this.name = name;
     }
 
-    public List<BankAccount> getBankAccounts() {
-        return bankAccounts;
-    }
-
-    public void setBankAccounts(List<BankAccount> bankAccounts) {
-        this.bankAccounts = bankAccounts;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -52,7 +42,6 @@ public class Merchant {
         return "Merchant{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", bankAccounts=" + bankAccounts +
                 ", createdAt=" + createdAt +
                 '}';
     }
