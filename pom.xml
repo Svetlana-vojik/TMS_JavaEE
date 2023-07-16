@@ -12,6 +12,7 @@
     <modules>
         <module>tmspaymentsystemDB</module>
         <module>client</module>
+        <module>servlet</module>
     </modules>
 
     <properties>
@@ -19,5 +20,17 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>cloud.piranha.webapp</groupId>
+            <artifactId>piranha-webapp-webservlet</artifactId>
+            <version>20.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cloud.piranha.servlet</groupId>
+            <artifactId>piranha-servlet-webservlet</artifactId>
+            <version>20.4.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
