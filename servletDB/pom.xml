@@ -32,6 +32,12 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>cloud.piranha.servlet</groupId>
+            <artifactId>piranha-servlet-api</artifactId>
+            <version>20.4.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
