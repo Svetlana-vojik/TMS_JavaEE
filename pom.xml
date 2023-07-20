@@ -13,6 +13,7 @@
         <module>tmspaymentsystemDB</module>
         <module>client</module>
         <module>servlet</module>
+        <module>servletDB</module>
     </modules>
 
     <properties>
