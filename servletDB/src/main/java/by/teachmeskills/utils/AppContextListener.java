@@ -13,7 +13,7 @@ public class AppContextListener implements ServletContextListener {
         ServletContext ctx = servletContextEvent.getServletContext();
 
         String dbURL = ctx.getInitParameter("dbURL");
-        String dbUser = ctx.getInitParameter("dbUser");
+        String dbUser = ctx.getInitParameter("dbLogin");
         String dbPassword = ctx.getInitParameter("dbPassword");
 
         DBConnectionManager dbManager = new DBConnectionManager(dbURL, dbUser, dbPassword);

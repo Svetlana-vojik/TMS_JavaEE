@@ -14,7 +14,7 @@
     </servlet-mapping>
 
     <context-param>
-        <param-name>dbUsername</param-name>
+        <param-name>dbLogin</param-name>
         <param-value>root</param-value>
     </context-param>
     <context-param>

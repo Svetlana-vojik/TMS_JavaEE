@@ -6,30 +6,30 @@ import java.sql.SQLException;
 
 public class DBConnectionManager {
     private String dbUrl;
-    private String dbUsername;
+    private String dbLogin;
     private String dbPassword;
-    private static Connection connection;
+    private Connection connection;
 
-    public DBConnectionManager(String dbUrl, String dbUsername, String dbPassword) {
+    public DBConnectionManager(String dbUrl, String dbLogin, String dbPassword) {
         this.dbUrl = dbUrl;
-        this.dbUsername = dbUsername;
+        this.dbLogin = dbLogin;
         this.dbPassword = dbPassword;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            connection = DriverManager.getConnection(dbUrl, dbLogin, dbPassword);
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
-    public static Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 
     public void closeConnection() {
         try {
-            connection.close();
+            this.connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
