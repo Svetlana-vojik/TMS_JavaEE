@@ -21,7 +21,7 @@
 </head>
 <body>
 <h1>Введите данные:</h1>
-<form method="get" action="login" accept-charset="UTF-8">
+<form method="POST" action="login" accept-charset="UTF-8">
     Логин:<input type="text" name="login"/></br>
     Пароль:<input type="text" name="password"/></br>
     <input type="submit" value="Войти">

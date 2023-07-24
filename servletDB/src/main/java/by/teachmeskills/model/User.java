@@ -1,5 +1,7 @@
 package by.teachmeskills.model;
 
+import java.util.Objects;
+
 public class User {
     private String login;
     private String password;
@@ -34,6 +36,17 @@ public class User {
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!Objects.equals(login, user.login)) return false;
+        return Objects.equals(password, user.password);
     }
 
     @Override
