@@ -44,7 +44,7 @@ public class AppServlet extends HttpServlet {
         String password = request.getParameter("password");
         ServletContext servletContext = request.getServletContext();
         DBConnectionManager dbConnectionManager = (DBConnectionManager) servletContext.getAttribute("DBManager");
-        User user = CRUDUtils.getUserDB(login, password, dbConnectionManager.getConnection());
+        User user = CRUDUtils.getUserFromDB(login, password, dbConnectionManager.getConnection());
         if (user != null) {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("user", user);
@@ -66,8 +66,8 @@ public class AppServlet extends HttpServlet {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CATEGORIES);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                             categories.add( Category.builder().id(resultSet.getString(1)).name(resultSet.getString(2))
-                                     .imageName(resultSet.getString(3)).productList(getProductByIdCategory(resultSet.getString(1))).build());
+                categories.add(Category.builder().id(resultSet.getString(1)).name(resultSet.getString(2))
+                        .imageName(resultSet.getString(3)).productList(getProductByIdCategory(resultSet.getString(1))).build());
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

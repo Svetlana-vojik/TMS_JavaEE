@@ -24,9 +24,11 @@
             <div class="card-body">
                 <a href="${contextPath}/shop?command=redirect_category_page&category_id${category.getId()}">
                     <img class="card-img" style="width:160px;height:160px"
-                         src="${contextPath}/images/categories${category.getImageName()}"
+                         src="${category.getImageName()}"
                          alt=${category.getImageName()}></a>
-                <div class="h5 card-title text-black">${category.getName()}</div>
+                <div>
+                    <a href="${contextPath}/category?category_id=${category.getId()}" class="btn">${category.getName()}</a>
+                </div>
             </div>
         </div>
     </c:forEach>
@@ -34,4 +36,5 @@
     </c:if>
 </div>
 </body>
+
 </html>

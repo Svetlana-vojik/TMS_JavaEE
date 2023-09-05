@@ -39,7 +39,7 @@
                     <div class="col m-1"><a href="${contextPath}/${category}?product_id=${product.getId()}"><img
                             class="card-img"
                             style="width:140px;height:140px"
-                            src="${contextPath}/images/products/${product.getImageName()}"
+                            src="${product.getImageName()}"
                             alt=${product.getImageName()}></a></div>
                     <div class="col m-1" style="text-align: center"><p></p>
                         <p>${product.getName()}</p>
