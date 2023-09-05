@@ -1,17 +1,12 @@
 package by.teachmeskills.utils;
 
-import by.teachmeskills.model.Category;
-import by.teachmeskills.model.Product;
 import by.teachmeskills.model.User;
-import jakarta.servlet.ServletContext;
 import lombok.experimental.UtilityClass;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @UtilityClass
 public class CRUDUtils {
@@ -29,7 +24,7 @@ public class CRUDUtils {
             }
             preparedStatement.close();
         } catch (SQLException e) {
-            return null;
+            System.out.println(e.getMessage());
         }
         return user;
     }

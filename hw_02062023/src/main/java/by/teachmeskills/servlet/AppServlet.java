@@ -66,8 +66,8 @@ public class AppServlet extends HttpServlet {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CATEGORIES);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                categories.add(Category.builder().id(resultSet.getString(1)).name(resultSet.getString(2))
-                        .imageName(resultSet.getString(3)).productList(getProductByIdCategory(resultSet.getString(1))).build());
+                             categories.add( Category.builder().id(resultSet.getString(1)).name(resultSet.getString(2))
+                                     .imageName(resultSet.getString(3)).productList(getProductByIdCategory(resultSet.getString(1))).build());
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
