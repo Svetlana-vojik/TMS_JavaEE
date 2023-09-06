@@ -14,6 +14,7 @@
         <module>client</module>
         <module>servlet</module>
         <module>servletDB</module>
+        <module>hw_02062023</module>
     </modules>
 
     <properties>
