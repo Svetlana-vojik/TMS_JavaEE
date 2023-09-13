@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS shop.users (
                                                 password VARCHAR(60) NOT NULL,
                                                 name VARCHAR(30) NOT NULL,
                                                 surname VARCHAR(60) NOT NULL,
+                                                birthday VARCHAR(15) NOT NULL,
                                                 balance DECIMAL(10, 2) NOT NULL,
                                                 PRIMARY KEY (`id`);
 --------------------------------------------------------
@@ -42,12 +43,12 @@ CREATE TABLE IF NOT EXISTS shop.users (
 --------------------------------------------------------
 --  DML for Table users
 --------------------------------------------------------
-    INSERT INTO shop.users(email, password, name, surname, balanca) VALUES(?, ?, ?, ?, ?);
+    INSERT INTO shop.users(email, password, name, surname,birthday, balanca) VALUES(?, ?, ?, ?,?, ?);
 
-    INSERT INTO shop.users(email, password, name, surname, balance) VALUES ('user1@mail.ru', '1111', 'Sveta', 'Kot', 10.00);
-    INSERT INTO shop.users(email, password, name, surname, balance) VALUES ('user2@mail.ru', '2222', 'Dima', 'Black', 2.50);
-    INSERT INTO shop.users(email, password, name, surname, balance) VALUES ('user3@mail.ru', '3333', 'Ira', 'Smith', 0.00);
-    INSERT INTO shop.users(email, password, name, surname, balance) VALUES ('user4@mail.ru', '4444', 'Lena', 'White', 13.15);
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance) VALUES ('user1@mail.ru', '1111', 'Sveta', 'Kot', '1989-12-29', 10.00);
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance) VALUES ('user2@mail.ru', '2222', 'Dima', 'Black', '1996-02-25', 2.50);
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance) VALUES ('user3@mail.ru', '3333', 'Ira', 'Smith','1994-03-08', 0.00);
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance) VALUES ('user4@mail.ru', '4444', 'Lena', 'White', '2000-11-15',13.15);
 --------------------------------------------------------
 --  DML for Table categories
 --------------------------------------------------------

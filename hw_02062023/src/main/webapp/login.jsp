@@ -15,33 +15,44 @@
 </head>
 <body>
 <div class="container">
+    <c:if test="${not empty message}">
+        <p style="text-align: center" class="text-danger">${message}</p>
+    </c:if>
+    <c:if test="${not empty error}">
+        <p style="text-align: center" class="text-danger">${error}</p>
+    </c:if>
     <div class="row">
         <div class="col-md-3 offset-md-4">
-    <h2>Вход</h2>
+            <h2>Вход</h2>
             <p>Заполните поля для входа</p>
-    <form method="post" action="shop" class="needs-validation" novalidate>
-        <div class="form-group">
-            <label for="login">Имя пользователя:</label>
-            <input type="email" class="form-control" id="login" placeholder="Введите email" name="login" required>
-            <div class="invalid-feedback">Имя пользователя должно быть введено!</div>
-        </div>
-        <div class="form-group">
-            <label for="password">Пароль:</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
-            <div class="invalid-feedback">Пароль должен быть введен!</div>
-        </div>
-               <button id="loginBtn" class="btn btn-primary">Войти</button>
+            <form method="post" action="login" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="login">Имя пользователя:</label>
+                    <input type="email" class="form-control" id="login" placeholder="Введите email" name="login"
+                           required>
+                    <div class="invalid-feedback">Имя пользователя должно быть введено!</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password"
+                           name="password" required>
+                    <div class="invalid-feedback">Пароль должен быть введен!</div>
+                </div>
+                <button id="loginBtn" class="btn btn-primary">Войти</button>
+                <a href="${pageContext.request.contextPath}/register">
+                    <button class="btn btn-danger" type="button">Регистрация</button>
+                </a>
             </form>
         </div>
     </div>
 </div>
 <script>
-    (function() {
+    (function () {
         'use strict';
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var forms = document.getElementsByClassName('needs-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();

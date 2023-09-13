@@ -17,24 +17,25 @@
 <h1 style="text-align: center">Каталог</h1>
 
 <div class="container-fluid mb-4">
-<c:if test="${not empty categories}">
-    <div class="row">
-    <c:forEach items="${categories}" var="category">
-        <div class="card w-25 m-1" type="category">
-            <div class="card-body">
-                <a href="${contextPath}/shop?command=redirect_category_page&category_id${category.getId()}">
-                    <img class="card-img" style="width:160px;height:160px"
-                         src="${category.getImageName()}"
-                         alt=${category.getImageName()}></a>
-                <div>
-                    <a href="${contextPath}/category?category_id=${category.getId()}" class="btn">${category.getName()}</a>
+    <c:if test="${not empty categories}">
+        <div class="row">
+            <c:forEach items="${categories}" var="category">
+                <div class="card w-25 m-1" type="category">
+                    <div class="card-body">
+                        <a href="${contextPath}/category?category_id=${category.getId()}">
+                            <img class="card-img" style="width:160px;height:160px"
+                                 src="${category.getImageName()}"
+                                 alt=${category.getImageName()}></a>
+                        <div>
+                            <a href="${contextPath}/category?category_id=${category.getId()}"
+                               class="btn">${category.getName()}</a>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </c:forEach>
         </div>
-    </c:forEach>
-</div>
     </c:if>
 </div>
 </body>
-
 </html>
