@@ -1,10 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <title>${category}</title>
+    <title>${productName}</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,26 +29,29 @@
     </div>
 </nav>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<h2 style="text-align: center">${category}</h2>
-<div class="container-fluid mb-4">
-    <c:forEach items="${products}" var="product">
-        <div class="card w-25 m-1" type="product">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col m-1"><a href="${contextPath}/product?product_id=${product.getId()}"><img
-                            class="card-img"
-                            style="width:140px;height:140px"
-                            src="${product.getImageName()}"
-                            alt=${product.getImageName()}></a></div>
-                    <div class="col m-1" style="text-align: center"><p></p>
-                        <a href="${contextPath}/product?product_id=${product.getId()}"><p>${product.getName()}</p>
-                        </a>
-                        <p>${product.getDescription()}</p>
-                        <p>${product.getPrice()}</p></div>
-                </div>
-            </div>
+<h2 style="text-align: center" >${product.getName()}</h2>
+<div class="card w-50 m-1" style="text-align: center" type="product">
+    <div class="card-body">
+        <div class="row">
+            <div class="col m-1"><img
+                    class="card-img"
+                    style="width:350px;height:350px"
+                    src="${product.getImageName()}"
+                    alt=${product.getImageName()}></div>
+            <div class="col m-1" style="text-align: left"><p></p>
+                <h2>${product.getName()}</h2>
+                <h3 style="color:green">${product.getDescription()}</h3>
+                <p>Цена: ${product.getPrice()}</p></div>
+            <div class="col m-1" style="text-align: center"><p></p></div>
         </div>
-    </c:forEach>
+        <div class="row" style="text-align: end">
+            <div class="col m-1" style="text-align: center"><p></p></div>
+            <div class="col m-1" style="text-align: center"><p></p></div>
+            <a href="#">
+                <button type="button" class="btn btn-success">Купить</button>
+            </a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
