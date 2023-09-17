@@ -1,8 +1,7 @@
 package by.teachmeskills.servlet;
 
 import by.teachmeskills.model.Product;
-import by.teachmeskills.utils.DBConnectionManager;
-import jakarta.servlet.ServletContext;
+import by.teachmeskills.utils.ConnectionPool;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,21 +12,19 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @WebServlet("/product")
 public class ProductServlet extends HttpServlet {
 
     private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM shop.products WHERE id=?";
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String productId = req.getParameter("product_id");
         Product product = null;
-        ServletContext ctx = getServletContext();
+        Connection connection = connectionPool.getConnection();
         try {
-            DBConnectionManager dbConnectionManager = (DBConnectionManager) ctx.getAttribute("DBManager");
-            Connection connection = dbConnectionManager.getConnection();
             PreparedStatement productsStatement = connection.prepareStatement(GET_PRODUCTS_BY_ID);
             productsStatement.setString(1, productId);
             ResultSet productResultSet = productsStatement.executeQuery();
@@ -35,8 +32,10 @@ public class ProductServlet extends HttpServlet {
                 product = Product.builder().id(productResultSet.getInt(1)).name(productResultSet.getString(2))
                         .description(productResultSet.getString(3)).price(productResultSet.getInt(4)).imageName(productResultSet.getString(6)).build();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         req.setAttribute("product", product);
         req.getRequestDispatcher("/product.jsp").forward(req, resp);

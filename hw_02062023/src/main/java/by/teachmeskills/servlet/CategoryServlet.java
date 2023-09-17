@@ -1,8 +1,7 @@
 package by.teachmeskills.servlet;
 
 import by.teachmeskills.model.Product;
-import by.teachmeskills.utils.DBConnectionManager;
-import jakarta.servlet.ServletContext;
+import by.teachmeskills.utils.ConnectionPool;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,23 +12,21 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/category")
 
 public class CategoryServlet extends HttpServlet {
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String categoryId = req.getParameter("category_id");
         String categoryName = null;
-        ServletContext ctx = getServletContext();
         List<Product> productList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
-            DBConnectionManager dbConnectionManager = (DBConnectionManager) ctx.getAttribute("DBManager");
-            Connection connection = dbConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM shop.products WHERE category_id=?");
             PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT * FROM shop.categories WHERE id=?");
             preparedStatement.setString(1, categoryId);
@@ -43,8 +40,10 @@ public class CategoryServlet extends HttpServlet {
             if (rs2.next()) {
                 categoryName = rs2.getString(2);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         req.getSession().setAttribute("category", categoryName);
         if (productList.size() != 0) {

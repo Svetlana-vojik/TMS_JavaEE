@@ -9,22 +9,14 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener
 public class AppContextListener implements ServletContextListener {
 
+    @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext ctx = servletContextEvent.getServletContext();
-
-        String dbUrl = ctx.getInitParameter("dbUrl");
-        String dbUser = ctx.getInitParameter("dbLogin");
-        String dbPassword = ctx.getInitParameter("dbPassword");
-
-        DBConnectionManager dbManager = new DBConnectionManager(dbUrl, dbUser, dbPassword);
-        ctx.setAttribute("DBManager", dbManager);
-        System.out.println("Database connection initialized for Application.");
+        System.out.println("Подключение к БД установлено");
     }
-
+    @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        ServletContext ctx = servletContextEvent.getServletContext();
-        DBConnectionManager dbManager = (DBConnectionManager) ctx.getAttribute("DBManager");
-        dbManager.closeConnection();
-        System.out.println("Database connection closed for Application.");
+        ConnectionPool.getInstance().disconnect();
+        System.out.println("Подключение к БД закрыто");
     }
 }
