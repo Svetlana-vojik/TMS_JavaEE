@@ -1,5 +1,5 @@
 package by.teachmeskills.prototype;
 
-public interface Prototype extends Cloneable{
+public interface Prototype extends Cloneable {
     Prototype reproduce();
 }

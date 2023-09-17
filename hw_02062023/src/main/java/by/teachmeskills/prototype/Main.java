@@ -1,6 +1,5 @@
 package by.teachmeskills.prototype;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class Main {
 
         Prototype robot = new Robot();
 
-        List< Prototype > robotList = new ArrayList<Prototype>();
+        List<Prototype> robotList = new ArrayList<Prototype>();
 
         robotList.add(robot.reproduce());
         robotList.add(robot.reproduce());

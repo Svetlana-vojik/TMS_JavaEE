@@ -6,7 +6,7 @@ public class Robot implements Prototype {
         try {
             robot = (Prototype) super.clone();
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return robot;
     }

@@ -33,10 +33,10 @@ public class RegistrationServlet extends HttpServlet {
         String birthday = req.getParameter("birthday");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        Connection connection = connectionPool.getConnection();
         if (validatorUtil.validationNameAndSurname(name) && validatorUtil.validationNameAndSurname(surname)
                 && validatorUtil.validationEmail(email) && validatorUtil.validationBirthday(birthday)) {
             try {
-                Connection connection = connectionPool.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(GET_USER);
                 preparedStatement.setString(1, email);
                 preparedStatement.setString(2, password);
@@ -51,12 +51,13 @@ public class RegistrationServlet extends HttpServlet {
                     preparedStatement.setString(4, email);
                     preparedStatement.setString(5, password);
                     preparedStatement.executeUpdate();
-                    connectionPool.closeConnection(connection);
                     req.setAttribute("message", "Пользователь успешно зарегистрирован. Войдите в систему.");
                 }
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+            } finally {
+                connectionPool.closeConnection(connection);
             }
         } else {
             req.setAttribute("message", "Некорректные данные.");

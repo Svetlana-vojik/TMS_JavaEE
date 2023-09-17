@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Builder;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -28,19 +29,20 @@ public class LoginServlet extends HttpServlet {
         User user = null;
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        Connection connection = connectionPool.getConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            connectionPool.closeConnection(connection);
             while (resultSet.next()) {
-                user = new User(resultSet.getString("email"), resultSet.getString("password"));
+                user = User.builder().login(resultSet.getString("email")).password(resultSet.getString("password")).build();
             }
             preparedStatement.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         if (user != null) {
             req.getSession().setAttribute("user", user);

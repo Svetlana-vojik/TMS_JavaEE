@@ -3,6 +3,7 @@ package by.teachmeskills.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Builder
 @Data
@@ -13,9 +14,4 @@ public class User {
     private String login;
     private String password;
     private String birthday;
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
 }

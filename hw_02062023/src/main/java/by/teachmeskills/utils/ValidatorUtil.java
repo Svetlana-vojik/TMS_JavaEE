@@ -1,10 +1,9 @@
 package by.teachmeskills.utils;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class ValidatorUtil {
-
-    private ValidatorUtil() {
-    }
-
     private static volatile ValidatorUtil instance;
 
     public static ValidatorUtil getInstance() {

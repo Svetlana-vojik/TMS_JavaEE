@@ -23,18 +23,19 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String productId = req.getParameter("product_id");
         Product product = null;
+        Connection connection = connectionPool.getConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             PreparedStatement productsStatement = connection.prepareStatement(GET_PRODUCTS_BY_ID);
             productsStatement.setString(1, productId);
             ResultSet productResultSet = productsStatement.executeQuery();
-            connectionPool.closeConnection(connection);
             if (productResultSet.next()) {
                 product = Product.builder().id(productResultSet.getInt(1)).name(productResultSet.getString(2))
                         .description(productResultSet.getString(3)).price(productResultSet.getInt(4)).imageName(productResultSet.getString(6)).build();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         req.setAttribute("product", product);
         req.getRequestDispatcher("/product.jsp").forward(req, resp);

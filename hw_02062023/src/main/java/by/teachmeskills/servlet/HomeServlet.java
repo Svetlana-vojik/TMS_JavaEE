@@ -41,35 +41,37 @@ public class HomeServlet extends HttpServlet {
 
     public List<Category> getCategoriesFromDB() {
         List<Category> categories = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_ALL_CATEGORIES);
-            connectionPool.closeConnection(connection);
             while (resultSet.next()) {
                 categories.add(Category.builder().id(resultSet.getString(1)).name(resultSet.getString(2))
                         .imageName(resultSet.getString(3)).productList(getProductByIdCategory(resultSet.getString(1))).build());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         return categories;
     }
 
     private List<Product> getProductByIdCategory(String id) {
         List<Product> products = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT);
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            connectionPool.closeConnection(connection);
             while (resultSet.next()) {
                 products.add(Product.builder().id(resultSet.getInt(1)).name(resultSet.getString(2))
                         .description(resultSet.getString(3)).price(resultSet.getInt(4)).imageName(resultSet.getString(6)).build());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         return products;
     }

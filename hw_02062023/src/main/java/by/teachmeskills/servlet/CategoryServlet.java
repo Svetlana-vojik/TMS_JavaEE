@@ -25,15 +25,14 @@ public class CategoryServlet extends HttpServlet {
         String categoryId = req.getParameter("category_id");
         String categoryName = null;
         List<Product> productList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM shop.products WHERE category_id=?");
             PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT * FROM shop.categories WHERE id=?");
             preparedStatement.setString(1, categoryId);
             preparedStatement2.setString(1, categoryId);
             ResultSet rs = preparedStatement.executeQuery();
             ResultSet rs2 = preparedStatement2.executeQuery();
-            connectionPool.closeConnection(connection);
             while (rs.next()) {
                 productList.add(Product.builder().id(rs.getInt(1)).name(rs.getString(2))
                         .description(rs.getString(3)).price(rs.getInt(4)).imageName(rs.getString(6)).build());
@@ -43,6 +42,8 @@ public class CategoryServlet extends HttpServlet {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
         req.getSession().setAttribute("category", categoryName);
         if (productList.size() != 0) {
