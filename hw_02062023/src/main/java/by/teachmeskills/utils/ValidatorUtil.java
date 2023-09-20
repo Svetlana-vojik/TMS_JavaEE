@@ -1,32 +1,39 @@
 package by.teachmeskills.utils;
 
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 public class ValidatorUtil {
 
     private ValidatorUtil() {
     }
 
-    private static volatile ValidatorUtil instance;
-
-    public static ValidatorUtil getInstance() {
-        if (instance == null) {
-            synchronized (ValidatorUtil.class) {
-                if (instance == null) {
-                    instance = new ValidatorUtil();
-                }
-            }
-        }
-        return instance;
+    public static boolean validateRegistration(String email, String name, String surname, String password, String birthday) {
+               return validateName(name) && validateSurname(surname)
+                && validateBirthday(birthday)
+                && validateEmail(email)
+                && validatePassword(password);
+    }
+    private static boolean validateEmail(String email) {
+        return email.matches("^(.+)@(\\S+)$");
     }
 
-    public boolean validationNameAndSurname(String string) {
-        return string.matches("[A-Za-z А-Яа-я]+") && Character.isUpperCase(string.charAt(0));
+    private static boolean validateName(String name) {
+        return name.matches("^[А-ЯЁ][а-яё]+$");
     }
 
-    public boolean validationEmail(String email) {
-        return email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    private static boolean validateSurname(String surname) {
+        return surname.matches("^[А-ЯЁ][а-яё]+$");
     }
 
-    public boolean validationBirthday(String date) {
-        return date.matches("\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])*");
+    private static boolean validatePassword(String password) {
+        String PASS_PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+        Pattern PATTERN = Pattern.compile(PASS_PATTERN);
+        Matcher matcher = PATTERN.matcher(password);
+        return matcher.matches();
+    }
+
+    private static boolean validateBirthday(String birthday) {
+        return birthday.matches("^((19[0-9][0-9])|(200[0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))$");
     }
 }

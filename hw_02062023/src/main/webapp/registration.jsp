@@ -20,7 +20,7 @@
   </c:if>
   <div class="row">
     <div class="col-md-12 offset-md-5">
-      <form method="post" action="register" class="needs-validation" novalidate>
+      <form method="post" action="registration" class="needs-validation" novalidate>
         <div class="form-group">
           <input type="text" class="form-control w-25" id="name" placeholder="Имя"
                  name="name"
@@ -52,7 +52,7 @@
                  required>
           <div class="invalid-feedback">Поле не может быть пустым!</div>
         </div>
-        <button id="registrationBtn" type="submit" class="btn btn-success">Регистрация</button>
+             <button id="registrationBtn" type="submit" class="btn btn-success">Регистрация</button>
       </form>
     </div>
   </div>

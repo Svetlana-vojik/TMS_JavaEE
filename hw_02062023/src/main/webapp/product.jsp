@@ -14,7 +14,7 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="home.jsp">
+            <a href="${contextPath}/shop?command=home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
@@ -22,7 +22,7 @@
             <a href="#">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="#">
+            <a href=${contextPath}/shop?command=redirect-to-shopping-cart>
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -47,7 +47,7 @@
         <div class="row" style="text-align: end">
             <div class="col m-1" style="text-align: center"><p></p></div>
             <div class="col m-1" style="text-align: center"><p></p></div>
-            <a href="#">
+            <a href="${contextPath}/shop?command=add-product-to-cart&product_id=${product.getId()}">
                 <button type="button" class="btn btn-success">Купить</button>
             </a>
         </div>

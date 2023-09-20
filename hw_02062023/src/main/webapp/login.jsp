@@ -25,10 +25,11 @@
         <div class="col-md-3 offset-md-4">
             <h2>Вход</h2>
             <p>Заполните поля для входа</p>
-            <form method="post" action="login" class="needs-validation" novalidate>
+            <form method="post" class="needs-validation" novalidate>
+                <input type="hidden" name="command" value="login">
                 <div class="form-group">
-                    <label for="login">Имя пользователя:</label>
-                    <input type="email" class="form-control" id="login" placeholder="Введите email" name="login"
+                    <%--@declare id="email"--%><label for="email">Имя пользователя:</label>
+                    <input type="text" class="form-control" id="login" placeholder="Введите email" name="email"
                            required>
                     <div class="invalid-feedback">Имя пользователя должно быть введено!</div>
                 </div>
@@ -39,7 +40,7 @@
                     <div class="invalid-feedback">Пароль должен быть введен!</div>
                 </div>
                 <button id="loginBtn" class="btn btn-primary">Войти</button>
-                <a href="${pageContext.request.contextPath}/register">
+                <a href="${contextPath}/shop?command=registration">
                     <button class="btn btn-danger" type="button">Регистрация</button>
                 </a>
             </form>
