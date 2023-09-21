@@ -15,11 +15,10 @@ public class SignInCommandImpl implements BaseCommand {
     public String execute(HttpServletRequest request) throws CommandException {
         String email = request.getParameter(RequestParamsEnum.LOGIN.getValue());
         String password = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
-
         validateParamNotNull(email);
         validateParamNotNull(password);
 
-        User user = CRUDUtils.getUser(email, password);
+        User user = CRUDUtils.getUser(email,password);
         return checkReceivedUser(user, request);
     }
 

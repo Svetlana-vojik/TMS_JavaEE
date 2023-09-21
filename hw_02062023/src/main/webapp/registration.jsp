@@ -20,8 +20,9 @@
   </c:if>
   <div class="row">
     <div class="col-md-12 offset-md-5">
-      <form method="post" action="registration" class="needs-validation" novalidate>
-        <div class="form-group">
+      ${info}
+      <form method="post" action="/shop" class="needs-validation" novalidate>
+          <div class="form-group">
           <input type="text" class="form-control w-25" id="name" placeholder="Имя"
                  name="name"
                  required>
@@ -35,8 +36,7 @@
         </div>
         <div class="form-group">
           <label for="birthday"><b>Дата рождения</b></label>
-          <input type="text" class="form-control w-25 datepicker" id="birthday" placeholder="YYYY-mm-dd"
-                 name="birthday"
+          <input type="date" class="form-control w-25" id="birthday" name="birthday"
                  required>
           <div class="invalid-feedback">Поле не может быть пустым!</div>
         </div>

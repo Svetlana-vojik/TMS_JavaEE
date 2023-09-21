@@ -2,6 +2,7 @@ package by.teachmeskills.commands;
 
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.enums.RequestParamsEnum;
+import by.teachmeskills.exceptions.CommandException;
 import by.teachmeskills.model.Category;
 import by.teachmeskills.model.User;
 import by.teachmeskills.utils.CRUDUtils;
@@ -15,6 +16,7 @@ import static by.teachmeskills.enums.PagesPathEnum.HOME_PAGE;
 import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
 import static by.teachmeskills.enums.RequestParamsEnum.CATEGORY;
 import static by.teachmeskills.utils.CRUDUtils.getCategoriesFromDB;
+import static by.teachmeskills.utils.CRUDUtils.getUser;
 import static by.teachmeskills.utils.HttpRequestParamValidator.validateParamNotNull;
 import static by.teachmeskills.utils.ValidatorUtil.validateRegistration;
 
@@ -29,28 +31,32 @@ public class RegistrationPageCommandImpl implements BaseCommand {
         String email = request.getParameter(RequestParamsEnum.LOGIN.getValue());
         String password = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
         try {
-            ValidatorUtil.validateRegistration(email, name, surname, password, birthday);
-            checkUser(email,password);
-        } catch (Exception e) {
-               return REGISTRATION_PAGE.getPath();
+            validateParamNotNull(name);
+            validateParamNotNull(surname);
+            validateParamNotNull(birthday);
+            validateParamNotNull(email);
+            validateParamNotNull(password);
+        } catch (CommandException e) {
+            return PagesPathEnum.REGISTRATION_PAGE.getPath();
         }
-        User user = new User(email, password, name, surname, birthday);
 
-        CRUDUtils.addUser(user);
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+        if (ValidatorUtil.validateRegistration(email, name, surname, password, birthday)) {
+            try {
+                User user = CRUDUtils.getUser(email, password);
+                if (user != null) {
+                    request.setAttribute("info", "Данный пользователь уже зарегистрирован. Войдите в систему.");
+                } else {
+                    user = new User(email, password, name, surname, birthday);
+                    CRUDUtils.addUser(user);
+                    request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            request.setAttribute("info", "Некорректные данные.");
+        }
 
-        List<Category> categories = CRUDUtils.getCategoriesFromDB();
-            request.setAttribute("categories", getCategoriesFromDB());
         return PagesPathEnum.HOME_PAGE.getPath();
-
-    }
-
-    private void checkUser(String email, String password) throws Exception {
-        User user = CRUDUtils.getUser(email,password);
-        if (user != null) {
-            throw new Exception("Пользователь с email - " + email + " уже зарегистрирован." +
-                    " Перейдите на страницу входа");
-        }
     }
 }
