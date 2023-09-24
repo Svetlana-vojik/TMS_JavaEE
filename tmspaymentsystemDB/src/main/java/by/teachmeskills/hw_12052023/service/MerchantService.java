@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class MerchantService {
-    public void addBankAccount(String merchantID, String accountNumber) throws MerchantNotFoundException {
-        BankAccount bankAccount = new BankAccount(merchantID, accountNumber);
+    public void addBankAccount(Merchant merchant, String accountNumber) {
+        BankAccount bankAccount = new BankAccount(merchant.getId(), accountNumber);
         validateBankAccountNumber(accountNumber);
-        List<BankAccount> bankAccounts = CRUDUtils.getMerchantBankAccounts(merchantID);
+        List<BankAccount> bankAccounts = CRUDUtils.getMerchantBankAccounts(merchant);
         Optional<BankAccount> accountOfBank = bankAccounts.stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
         accountOfBank.ifPresentOrElse(a -> Optional.of(a).filter(s -> s.getStatus().equals(AccountStatus.DELETED)).ifPresent(s -> {
                     s.setStatus(AccountStatus.ACTIVE);
@@ -25,24 +25,24 @@ public class MerchantService {
                 () -> CRUDUtils.createBankAccount(bankAccount));
     }
 
-    public static List<BankAccount> getMerchantBankAccounts(String merchantId) throws NoBankAccountsFoundException, MerchantNotFoundException {
-        List<BankAccount> accounts = CRUDUtils.getMerchantBankAccounts(merchantId);
+    public static List<BankAccount> getMerchantBankAccounts(Merchant merchant) throws NoBankAccountsFoundException {
+        List<BankAccount> accounts = CRUDUtils.getMerchantBankAccounts(merchant);
         if (accounts.isEmpty()) {
             throw new NoBankAccountsFoundException("У этого пользователя нет аккаунта");
         }
         return accounts;
     }
 
-    public void updateBankAccount(String accountNumber, String newAccountNumber, String merchantID) throws BankAccountNotFoundException, MerchantNotFoundException {
+    public void updateBankAccount(String accountNumber, String newAccountNumber, String merchantID) throws BankAccountNotFoundException {
         Merchant merchant = CRUDUtils.getMerchantById(merchantID);
-        List<BankAccount> accounts = CRUDUtils.getMerchantBankAccounts(merchantID);
+        List<BankAccount> accounts = CRUDUtils.getMerchantBankAccounts(merchant);
         BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(accountNumber)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
         account.setAccountNumber(newAccountNumber);
         CRUDUtils.updateMerchantBankAccount(accountNumber, newAccountNumber, merchantID);
     }
 
-    public boolean deleteBankAccount(String accountNumber, String merchantId) throws BankAccountNotFoundException, MerchantNotFoundException {
-        List<BankAccount> listBank = CRUDUtils.getMerchantBankAccounts(merchantId);
+    public boolean deleteBankAccount(String accountNumber, Merchant merchant) throws BankAccountNotFoundException {
+        List<BankAccount> listBank = CRUDUtils.getMerchantBankAccounts(merchant);
         BankAccount account = listBank.stream().filter(s -> s.getAccountNumber().equals(accountNumber)).findAny().orElse(null);
         if (account == null) {
             throw new BankAccountNotFoundException("No bank account found!");
@@ -62,7 +62,7 @@ public class MerchantService {
         return merchants;
     }
 
-    public static Merchant getMerchantsById(String merchantID) throws MerchantNotFoundException {
+    public Merchant getMerchantsById(String merchantID) throws MerchantNotFoundException {
         Merchant merchant = CRUDUtils.getMerchantById(merchantID);
         if (merchant == null) {
             throw new MerchantNotFoundException("Мерчант с ID " + merchantID + " отсутствует в базе.\n");

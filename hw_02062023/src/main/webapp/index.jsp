@@ -8,6 +8,6 @@
     <title>Login</title>
 </head>
 <body>
-<jsp:forward page="/login"/>
+<jsp:forward page="/shop"/>
 </body>
 </html>

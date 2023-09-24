@@ -15,7 +15,7 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="home.jsp">
+            <a href="${contextPath}/shop?command=home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
@@ -23,7 +23,7 @@
             <a href="#">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="#">
+            <a href=${contextPath}/shop?command=redirect-to-shopping-cart>
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -36,13 +36,13 @@
         <div class="card w-25 m-1" type="product">
             <div class="card-body">
                 <div class="row">
-                    <div class="col m-1"><a href="${contextPath}/product?product_id=${product.getId()}"><img
+                    <div class="col m-1"><a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><img
                             class="card-img"
                             style="width:140px;height:140px"
                             src="${product.getImageName()}"
                             alt=${product.getImageName()}></a></div>
                     <div class="col m-1" style="text-align: center"><p></p>
-                        <a href="${contextPath}/product?product_id=${product.getId()}"><p>${product.getName()}</p>
+                        <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><p>${product.getName()}</p>
                         </a>
                         <p>${product.getDescription()}</p>
                         <p>${product.getPrice()}</p></div>

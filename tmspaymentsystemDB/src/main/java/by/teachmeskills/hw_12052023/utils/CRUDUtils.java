@@ -1,10 +1,8 @@
 package by.teachmeskills.hw_12052023.utils;
 
-import by.teachmeskills.hw_12052023.exception.MerchantNotFoundException;
 import by.teachmeskills.hw_12052023.model.AccountStatus;
 import by.teachmeskills.hw_12052023.model.BankAccount;
 import by.teachmeskills.hw_12052023.model.Merchant;
-import by.teachmeskills.hw_12052023.service.MerchantService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +16,7 @@ import java.util.List;
 public class CRUDUtils {
     private final static String GET_MERCHANT_BANK_ACCOUNTS = "SELECT * FROM bank_accounts WHERE merchant_id = ? order by status ASC, created_at ASC";
     private final static String UPDATE_MERCHANT_BANK_ACCOUNT = "UPDATE bank_accounts SET account_number = ? WHERE merchant_id = ? and account_number = ?";
-    private final static String ADD_BANK_ACCOUNT_QUERY = "INSERT INTO bank_accounts (id, merchant_id, status, account_number, created_at) values (?, ?, ?, ?, ?)";
+    private final static String ADD_BANK_ACCOUNT_QUERY = "INSERT INTO bank_accounts (id, merchant_id, status, account_number, created_at) Values (?, ?, ?, ?, ?)";
     private final static String GET_BANK_ACCOUNT = "SELECT * FROM bank_accounts WHERE id = ?";
     private final static String DELETE_BANK_ACCOUNT = "UPDATE bank_accounts SET status = ? WHERE account_number = ?";
     private final static String ADD_MERCHANT = "INSERT INTO merchant (id, name, created_at) Values (?, ?, ?)";
@@ -31,8 +29,7 @@ public class CRUDUtils {
     private CRUDUtils() {
     }
 
-    public static List<BankAccount> getMerchantBankAccounts(String merchantId) throws MerchantNotFoundException {
-        Merchant merchant = MerchantService.getMerchantsById(merchantId);
+    public static List<BankAccount> getMerchantBankAccounts(Merchant merchant) {
         List<BankAccount> bankAccounts = new ArrayList<>();
         try (Connection connection = DBUtils.getConnection();
              PreparedStatement psGet = connection.prepareStatement(GET_MERCHANT_BANK_ACCOUNTS)) {

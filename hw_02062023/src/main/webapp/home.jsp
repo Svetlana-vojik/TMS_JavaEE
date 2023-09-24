@@ -22,12 +22,12 @@
             <c:forEach items="${categories}" var="category">
                 <div class="card w-25 m-1" type="category">
                     <div class="card-body">
-                        <a href="${contextPath}/category?category_id=${category.getId()}">
+                        <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}">
                             <img class="card-img" style="width:160px;height:160px"
                                  src="${category.getImageName()}"
                                  alt=${category.getImageName()}></a>
                         <div>
-                            <a href="${contextPath}/category?category_id=${category.getId()}"
+                            <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}"
                                class="btn">${category.getName()}</a>
 
                         </div>

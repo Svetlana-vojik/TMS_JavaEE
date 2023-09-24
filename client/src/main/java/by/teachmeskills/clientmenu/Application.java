@@ -34,15 +34,17 @@ public class Application {
                 case 1 -> {
                     System.out.print("Введите id мерчента, о банковских аккаунтах которого нужно предоставить информацию: ");
                     String merchantId = scanner.next();
-                    List<BankAccount> listBank = MerchantService.getMerchantBankAccounts(merchantId);
+                    Merchant merchant = merchantService.getMerchantsById(merchantId);
+                    List<BankAccount> listBank = MerchantService.getMerchantBankAccounts(merchant);
                     listBank.forEach(s -> System.out.printf("Аккаунт: номер - %s; status - %s; дата - %s\n", s.getAccountNumber(), s.getStatus(), s.getCreatedAt()));
                 }
                 case 2 -> {
                     System.out.println("Введите id мерчента, которому нужно добавить новый банковский аккаунт:");
                     String merchantId = scanner.next();
+                    Merchant merchant = merchantService.getMerchantsById(merchantId);
                     System.out.print("Введите номер банковского аккаунта мерчента: ");
                     String accountNumber = scanner.next();
-                    merchantService.addBankAccount(merchantId, accountNumber);
+                    merchantService.addBankAccount(merchant, accountNumber);
                 }
                 case 3 -> {
                     System.out.print("Введите id мерчента, у которого редактируется аккаунт: ");
@@ -57,16 +59,17 @@ public class Application {
                 case 4 -> {
                     System.out.print("Введите id мерчента, аккаунт которого надо удалить: ");
                     String merchantId = scanner.next();
+                    Merchant merchant = merchantService.getMerchantsById(merchantId);
                     System.out.print("Введите номер банковского аккаунта мерчента, который надо удалить: ");
                     String accountNumber = scanner.next();
-                    if (merchantService.deleteBankAccount(accountNumber, merchantId)) {
+                    if (merchantService.deleteBankAccount(accountNumber, merchant)) {
                         System.out.println("Аккаунт " + accountNumber + " удален!");
                     }
                 }
                 case 5 -> {
                     System.out.print("Введите id мерчента, о котором надо получить информацию: ");
                     String merchantId = scanner.next();
-                    Merchant merchant = MerchantService.getMerchantsById(merchantId);
+                    Merchant merchant = merchantService.getMerchantsById(merchantId);
                     System.out.printf("Мерчант: ID - %s; имя - %s; дата создания - %s\n", merchant.getId(), merchant.getName(), merchant.getCreatedAt());
                 }
                 case 6 -> merchantService.getMerchants().forEach(s ->

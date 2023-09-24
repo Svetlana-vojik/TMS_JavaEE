@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS shop.users (
                                                 password VARCHAR(60) NOT NULL,
                                                 name VARCHAR(30) NOT NULL,
                                                 surname VARCHAR(60) NOT NULL,
-                                                birthday VARCHAR(15) NOT NULL,
-                                                balance DECIMAL(10, 2) NOT NULL,
+                                                birthday DATE NULL,
+                                                balance DECIMAL(10, 2) NULL,
                                                 PRIMARY KEY (`id`);
 --------------------------------------------------------
 --  DDL for Table categories
