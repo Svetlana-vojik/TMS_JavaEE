@@ -15,17 +15,19 @@ public class RegistrationPageCommandImpl implements BaseCommand {
     @Override
     public String execute(HttpServletRequest request) {
 
+        String email = request.getParameter(RequestParamsEnum.LOGIN.getValue());
+        String password = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
         String name = request.getParameter(RequestParamsEnum.NAME.getValue());
         String surname = request.getParameter(RequestParamsEnum.SURNAME.getValue());
         String birthday = request.getParameter(RequestParamsEnum.BIRTHDAY.getValue());
-        String email = request.getParameter(RequestParamsEnum.LOGIN.getValue());
-        String password = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
+
         try {
+            validateParamNotNull(email);
+            validateParamNotNull(password);
             validateParamNotNull(name);
             validateParamNotNull(surname);
             validateParamNotNull(birthday);
-            validateParamNotNull(email);
-            validateParamNotNull(password);
+
         } catch (CommandException e) {
             return PagesPathEnum.REGISTRATION_PAGE.getPath();
         }
