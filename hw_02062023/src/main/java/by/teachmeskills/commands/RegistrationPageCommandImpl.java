@@ -3,6 +3,7 @@ package by.teachmeskills.commands;
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.enums.RequestParamsEnum;
 import by.teachmeskills.exceptions.CommandException;
+import by.teachmeskills.exceptions.RequestParamNullException;
 import by.teachmeskills.model.User;
 import by.teachmeskills.utils.CRUDUtils;
 import by.teachmeskills.utils.ValidatorUtil;
@@ -13,7 +14,7 @@ import static by.teachmeskills.utils.HttpRequestParamValidator.validateParamNotN
 
 public class RegistrationPageCommandImpl implements BaseCommand {
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request) throws RequestParamNullException {
 
         String email = request.getParameter(RequestParamsEnum.LOGIN.getValue());
         String password = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
@@ -22,13 +23,8 @@ public class RegistrationPageCommandImpl implements BaseCommand {
         String birthday = request.getParameter(RequestParamsEnum.BIRTHDAY.getValue());
 
         try {
-            validateParamNotNull(email);
-            validateParamNotNull(password);
-            validateParamNotNull(name);
-            validateParamNotNull(surname);
-            validateParamNotNull(birthday);
-
-        } catch (CommandException e) {
+            ValidatorUtil.validateParamNotNull(email, password, name, surname, birthday);
+        } catch (RequestParamNullException e) {
             return PagesPathEnum.REGISTRATION_PAGE.getPath();
         }
 

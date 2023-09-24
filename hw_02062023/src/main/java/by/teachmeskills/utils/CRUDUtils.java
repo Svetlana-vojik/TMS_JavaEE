@@ -67,7 +67,7 @@ public class CRUDUtils {
             ResultSet rs = statement.executeQuery(GET_ALL_CATEGORIES);
             while (rs.next()) {
                 categories.add(Category.builder().id(rs.getString(1)).name(rs.getString(2))
-                        .imageName(rs.getString(3)).productList(getProductsByIdCategory(rs.getString(1))).build());
+                        .imageName(rs.getString(3)).productList(getProductsByCategoryId(rs.getString(1))).build());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -78,7 +78,7 @@ public class CRUDUtils {
     }
 
 
-    public static List<Product> getProductsByIdCategory(String id) {
+    public static List<Product> getProductsByCategoryId(String id) {
         List<Product> products = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
         try {
