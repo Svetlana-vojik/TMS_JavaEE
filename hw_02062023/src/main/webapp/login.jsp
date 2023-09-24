@@ -15,8 +15,8 @@
 </head>
 <body>
 <div class="container">
-    <c:if test="${not empty message}">
-        <p style="text-align: center" class="text-danger">${message}</p>
+    <c:if test="${not empty info}">
+        <p style="text-align: center" class="text-danger">${info}</p>
     </c:if>
     <c:if test="${not empty error}">
         <p style="text-align: center" class="text-danger">${error}</p>
@@ -28,14 +28,14 @@
             <form method="post" class="needs-validation" novalidate>
                 <input type="hidden" name="command" value="login">
                 <div class="form-group">
-                    <%--@declare id="email"--%><label for="email">Имя пользователя:</label>
-                    <input type="text" class="form-control" id="login" placeholder="Введите email" name="email"
+             <label for="email">Имя пользователя:</label>
+                    <input type="text" class="form-control" id="email" placeholder="Введите email" name="email"
                            required>
                     <div class="invalid-feedback">Имя пользователя должно быть введено!</div>
                 </div>
                 <div class="form-group">
                     <label for="password">Пароль:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password"
+                    <input type="text" class="form-control" id="password" placeholder="Enter password"
                            name="password" required>
                     <div class="invalid-feedback">Пароль должен быть введен!</div>
                 </div>
@@ -64,7 +64,7 @@
         }, false);
     })();
     document.getElementById('loginBtn').disabled = true;
-    document.getElementById('login').addEventListener('keyup', e => {
+    document.getElementById('email').addEventListener('keyup', e => {
         document.getElementById('loginBtn').disabled = e.target.value === "";
     });
     document.getElementById('password').addEventListener('keyup', e => {

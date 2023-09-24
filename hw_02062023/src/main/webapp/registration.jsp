@@ -36,7 +36,8 @@
         </div>
         <div class="form-group">
           <label for="birthday"><b>Дата рождения</b></label>
-          <input type="date" class="form-control w-25" id="birthday" name="birthday"
+          <input type="text" class="form-control w-25 datepicker" id="birthday" placeholder="YYYY-mm-dd"
+                 name="birthday"
                  required>
           <div class="invalid-feedback">Поле не может быть пустым!</div>
         </div>

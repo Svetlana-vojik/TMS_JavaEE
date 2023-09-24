@@ -14,7 +14,7 @@ public class CategoryRedirectCommandImpl implements BaseCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String categoryId = request.getParameter(CATEGORY_ID.getValue());
-        List<Product> products = CRUDUtils.getProductByIdCategory(categoryId);
+        List<Product> products = CRUDUtils.getProductsByIdCategory(categoryId);
         request.setAttribute(PRODUCTS.getValue(), products);
         return CATEGORY_PAGE.getPath();
     }

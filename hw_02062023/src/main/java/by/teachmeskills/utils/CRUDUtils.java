@@ -21,7 +21,7 @@ public class CRUDUtils {
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM shop.products WHERE category_id=?";
     private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM shop.products WHERE id=?";
     private static final String GET_USER = "SELECT * FROM shop.users WHERE email=? and password=?";
-    private static final String ADD_USER = "INSERT INTO shop.users (name,surname,birthday,email,password) values (?,?,?,?,?)";
+    private static final String ADD_USER = "INSERT INTO shop.users (email,password,name,surname,birthday) values (?,?,?,?,?)";
 
 
     public static User getUser(String email, String password) {
@@ -33,7 +33,7 @@ public class CRUDUtils {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user = User.builder().login(resultSet.getString("email")).password(resultSet.getString("password")).build();
+                user = User.builder().email(resultSet.getString("email")).password(resultSet.getString("password")).build();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,14 +46,16 @@ public class CRUDUtils {
     public static void addUser(User user) {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement psInsert = connection.prepareStatement(ADD_USER)) {
-            psInsert.setString(1, user.getName());
-            psInsert.setString(2, user.getSurname());
-            psInsert.setString(3, user.getLogin());
-            psInsert.setString(5, user.getPassword());
-            psInsert.setString(6, user.getBirthday());
-            psInsert.execute();
+            psInsert.setString(1, user.getEmail());
+            psInsert.setString(2, user.getPassword());
+            psInsert.setString(3, user.getName());
+            psInsert.setString(4, user.getSurname());
+            psInsert.setString(5, user.getBirthday());
+            psInsert.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            connectionPool.closeConnection(connection);
         }
     }
 
@@ -65,7 +67,7 @@ public class CRUDUtils {
             ResultSet rs = statement.executeQuery(GET_ALL_CATEGORIES);
             while (rs.next()) {
                 categories.add(Category.builder().id(rs.getString(1)).name(rs.getString(2))
-                        .imageName(rs.getString(3)).productList(getProductByIdCategory(rs.getString(1))).build());
+                        .imageName(rs.getString(3)).productList(getProductsByIdCategory(rs.getString(1))).build());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -76,7 +78,7 @@ public class CRUDUtils {
     }
 
 
-    public static List<Product> getProductByIdCategory(String id) {
+    public static List<Product> getProductsByIdCategory(String id) {
         List<Product> products = new ArrayList<>();
         Connection connection = connectionPool.getConnection();
         try {

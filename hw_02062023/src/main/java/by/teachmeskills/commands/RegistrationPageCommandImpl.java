@@ -3,23 +3,13 @@ package by.teachmeskills.commands;
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.enums.RequestParamsEnum;
 import by.teachmeskills.exceptions.CommandException;
-import by.teachmeskills.model.Category;
 import by.teachmeskills.model.User;
 import by.teachmeskills.utils.CRUDUtils;
 import by.teachmeskills.utils.ValidatorUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
-import java.util.List;
-
-import static by.teachmeskills.enums.PagesPathEnum.HOME_PAGE;
 import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
-import static by.teachmeskills.enums.RequestParamsEnum.CATEGORY;
-import static by.teachmeskills.utils.CRUDUtils.getCategoriesFromDB;
-import static by.teachmeskills.utils.CRUDUtils.getUser;
 import static by.teachmeskills.utils.HttpRequestParamValidator.validateParamNotNull;
-import static by.teachmeskills.utils.ValidatorUtil.validateRegistration;
-
 
 public class RegistrationPageCommandImpl implements BaseCommand {
     @Override
@@ -40,7 +30,7 @@ public class RegistrationPageCommandImpl implements BaseCommand {
             return PagesPathEnum.REGISTRATION_PAGE.getPath();
         }
 
-        if (ValidatorUtil.validateRegistration(email, name, surname, password, birthday)) {
+        if (ValidatorUtil.validateRegistration(email, name, surname, birthday)) {
             try {
                 User user = CRUDUtils.getUser(email, password);
                 if (user != null) {
@@ -57,6 +47,6 @@ public class RegistrationPageCommandImpl implements BaseCommand {
             request.setAttribute("info", "Некорректные данные.");
         }
 
-        return PagesPathEnum.HOME_PAGE.getPath();
+        return REGISTRATION_PAGE.getPath();
     }
 }

@@ -2,7 +2,7 @@ package by.teachmeskills.utils;
 
 import by.teachmeskills.exceptions.RequestParamNullException;
 
-public class HttpRequestParamValidator {
+public class HttpRequestParamValidator extends Exception{
 
     private static final String REQUEST_PARAMETER_IS_NULL_ERROR = "Request parameter is not initialized!";
 
