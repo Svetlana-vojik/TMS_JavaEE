@@ -13,15 +13,13 @@
 </head>
 <body><h2 style="text-align:center">Регистрация</h2>
 <p></p>
-
 <div class="container">
-  <c:if test="${not empty message}">
-    <p style="text-align: center" class="text-danger">${message}</p>
+  <c:if test="${not empty info}">
+    <p style="text-align: center" class="text-danger">${info}</p>
   </c:if>
   <div class="row">
     <div class="col-md-12 offset-md-5">
-      ${info}
-      <form method="post" action="/shop" class="needs-validation" novalidate>
+      <form method="post" class="needs-validation" novalidate>
           <div class="form-group">
           <input type="text" class="form-control w-25" id="name" placeholder="Имя"
                  name="name"
