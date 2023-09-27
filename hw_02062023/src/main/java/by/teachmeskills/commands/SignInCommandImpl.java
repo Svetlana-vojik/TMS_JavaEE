@@ -18,7 +18,7 @@ public class SignInCommandImpl implements BaseCommand {
         validateParamNotNull(email);
         validateParamNotNull(password);
 
-        User user = CRUDUtils.getUser(email,password);
+        User user = CRUDUtils.getUser(email, password);
         return checkReceivedUser(user, request);
     }
 

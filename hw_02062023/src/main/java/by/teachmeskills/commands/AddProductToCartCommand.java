@@ -14,6 +14,7 @@ import static by.teachmeskills.enums.RequestParamsEnum.PRODUCT_ID;
 
 public class AddProductToCartCommand implements BaseCommand {
     private final static Logger log = LogManager.getLogger(AddProductToCartCommand.class);
+
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();

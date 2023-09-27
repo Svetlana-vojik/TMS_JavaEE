@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UserPageCommandImpl implements BaseCommand {
 
-        @Override
+    @Override
     public String execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");

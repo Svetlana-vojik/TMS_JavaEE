@@ -12,6 +12,7 @@ import static by.teachmeskills.enums.RequestParamsEnum.PRODUCT_ID;
 
 public class RedirectProductPageCommandImpl implements BaseCommand {
     private final static Logger log = LogManager.getLogger(RedirectProductPageCommandImpl.class);
+
     @Override
     public String execute(HttpServletRequest request) {
         String productId = request.getParameter(PRODUCT_ID.getValue());
@@ -19,7 +20,7 @@ public class RedirectProductPageCommandImpl implements BaseCommand {
             Product product = CRUDUtils.getProductById(productId);
             request.setAttribute(PRODUCT.getValue(), product);
         } catch (Exception e) {
-           log.warn(e.getMessage());
+            log.warn(e.getMessage());
         }
         return PRODUCT_PAGE.getPath();
     }

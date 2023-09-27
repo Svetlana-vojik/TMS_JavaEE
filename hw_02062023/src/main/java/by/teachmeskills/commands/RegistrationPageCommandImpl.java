@@ -14,6 +14,7 @@ import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
 
 public class RegistrationPageCommandImpl implements BaseCommand {
     private final static Logger log = LogManager.getLogger(RedirectProductPageCommandImpl.class);
+
     @Override
     public String execute(HttpServletRequest request) throws RequestParamNullException {
 

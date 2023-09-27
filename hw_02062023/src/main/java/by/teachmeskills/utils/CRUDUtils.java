@@ -17,6 +17,7 @@ import java.util.List;
 public class CRUDUtils {
     private CRUDUtils() {
     }
+
     private final static Logger log = LogManager.getLogger(CRUDUtils.class);
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final String GET_ALL_CATEGORIES = "SELECT * FROM shop.categories";
