@@ -24,7 +24,7 @@ public class SignInCommandImpl implements BaseCommand {
 
     private String checkReceivedUser(User user, HttpServletRequest request) {
         if (user != null) {
-            request.getSession().setAttribute(RequestParamsEnum.USER.getValue(), user);
+            request.getSession().setAttribute("user", user);
             request.setAttribute("categories", CRUDUtils.getCategoriesFromDB());
             return PagesPathEnum.HOME_PAGE.getPath();
         } else {

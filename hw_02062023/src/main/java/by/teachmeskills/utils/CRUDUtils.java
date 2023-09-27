@@ -1,6 +1,5 @@
 package by.teachmeskills.utils;
 
-import by.teachmeskills.commands.AddProductToCartCommand;
 import by.teachmeskills.model.Category;
 import by.teachmeskills.model.Product;
 import by.teachmeskills.model.User;
@@ -36,7 +35,12 @@ public class CRUDUtils {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user = User.builder().email(resultSet.getString("email")).password(resultSet.getString("password")).build();
+                user = User.builder().email(resultSet.getString("email"))
+                        .password(resultSet.getString("password"))
+                        .surname(resultSet.getString("surname"))
+                        .name(resultSet.getString("name"))
+                        .birthday(resultSet.getString("birthday"))
+                        .build();
             }
         } catch (Exception e) {
             log.warn(e.getMessage());

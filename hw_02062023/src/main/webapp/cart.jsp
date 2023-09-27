@@ -14,7 +14,6 @@
 </head>
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
@@ -61,7 +60,8 @@
         </div>
     </c:forEach>
 </div>
-<div class="container-fluid mb-4" style="text-align: center"><a href="${contextPath}/shop?command=#"
+<div class="container-fluid mb-4" style="text-align: center">
+    <a href="${contextPath}/shop?command=r"
                                                                 style="text-align: right"><p></p>
     <button class="btn btn-success m-2" type="button">Оформить заказ</button>
 </a></div>

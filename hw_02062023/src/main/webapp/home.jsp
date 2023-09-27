@@ -15,7 +15,6 @@
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <h1 style="text-align: center">Каталог</h1>
-
 <div class="container-fluid mb-4">
     <c:if test="${not empty categories}">
         <div class="row">
@@ -29,7 +28,6 @@
                         <div>
                             <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}"
                                class="btn">${category.getName()}</a>
-
                         </div>
                     </div>
                 </div>
