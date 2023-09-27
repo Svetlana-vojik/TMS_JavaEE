@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>${category}</title>
+    <title>Корзина</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -29,27 +30,3 @@
         </form>
     </div>
 </nav>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<h2 style="text-align: center">${category}</h2>
-<div class="container-fluid mb-4">
-    <c:forEach items="${products}" var="product">
-        <div class="card w-25 m-1" type="product">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col m-1"><a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><img
-                            class="card-img"
-                            style="width:140px;height:140px"
-                            src="${product.getImageName()}"
-                            alt=${product.getImageName()}></a></div>
-                    <div class="col m-1" style="text-align: center"><p></p>
-                        <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><p>${product.getName()}</p>
-                        </a>
-                        <p>${product.getDescription()}</p>
-                        <p>${product.getPrice()}</p></div>
-                </div>
-            </div>
-        </div>
-    </c:forEach>
-</div>
-</body>
-</html>

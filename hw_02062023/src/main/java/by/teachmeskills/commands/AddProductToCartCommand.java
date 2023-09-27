@@ -7,11 +7,13 @@ import by.teachmeskills.model.Product;
 import by.teachmeskills.utils.CRUDUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static by.teachmeskills.enums.RequestParamsEnum.PRODUCT_ID;
 
 public class AddProductToCartCommand implements BaseCommand {
-
+    private final static Logger log = LogManager.getLogger(AddProductToCartCommand.class);
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
@@ -28,7 +30,7 @@ public class AddProductToCartCommand implements BaseCommand {
             session.setAttribute("cart", cart);
             request.setAttribute("product", product);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.warn(e.getMessage());
         }
         return PagesPathEnum.PRODUCT_PAGE.getPath();
     }

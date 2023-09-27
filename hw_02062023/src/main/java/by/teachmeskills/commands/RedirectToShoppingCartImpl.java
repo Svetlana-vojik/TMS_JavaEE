@@ -9,6 +9,7 @@ import static by.teachmeskills.enums.RequestParamsEnum.SHOPPING_CART;
 import static by.teachmeskills.enums.RequestParamsEnum.SHOPPING_CART_PRODUCTS;
 
 public class RedirectToShoppingCartImpl implements BaseCommand {
+
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();

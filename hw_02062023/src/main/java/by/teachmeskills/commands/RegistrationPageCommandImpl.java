@@ -7,10 +7,13 @@ import by.teachmeskills.model.User;
 import by.teachmeskills.utils.CRUDUtils;
 import by.teachmeskills.utils.ValidatorUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
 
 public class RegistrationPageCommandImpl implements BaseCommand {
+    private final static Logger log = LogManager.getLogger(RedirectProductPageCommandImpl.class);
     @Override
     public String execute(HttpServletRequest request) throws RequestParamNullException {
 
@@ -37,7 +40,7 @@ public class RegistrationPageCommandImpl implements BaseCommand {
                     request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                log.warn(e.getMessage());
             }
         } else {
             request.setAttribute("info", "Некорректные данные.");
