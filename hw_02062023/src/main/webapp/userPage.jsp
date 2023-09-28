@@ -32,7 +32,7 @@
     </div>
 </nav>
 <section>
-    <c:set  var="user" value="${user}"/>
+    <c:set var="user" value="${user}"/>
     <div class="col">
         <div class="card mb-4">
             <div class="card-body">
