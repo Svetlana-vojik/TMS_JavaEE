@@ -97,8 +97,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${product.getName()}</h5>
                                 <p class="card-text">${product.getDescription()}</p>
-                                <p class="card-text">Цена:
-                                        <fmt:formatNumber value="${product.getPrice()}"/>
+                                <p class="card-text">Цена: ${product.getPrice()}</p>
                             </div>
                         </div>
                     </div>
