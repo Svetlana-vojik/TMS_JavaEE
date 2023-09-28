@@ -61,9 +61,9 @@
     </c:forEach>
 </div>
 <div class="container-fluid mb-4" style="text-align: center">
-    <a href="${contextPath}/shop?command=r"
-                                                                style="text-align: right"><p></p>
-    <button class="btn btn-success m-2" type="button">Оформить заказ</button>
-</a></div>
+    <a href="#"
+       style=" text-align: right"><p></p>
+        <button class="btn btn-success m-2" type="button">Оформить заказ</button>
+    </a></div>
 </body>
 </html>
