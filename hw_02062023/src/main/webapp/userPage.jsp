@@ -38,7 +38,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="mb-0">Личные данные</h4>
+                        <h4 style="text-align: center"><em>Личные данные</em></h4>
                     </div>
                 </div>
                 <hr>
