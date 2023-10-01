@@ -1,7 +1,7 @@
 package by.teachmeskills.commands;
 
 import by.teachmeskills.exceptions.CommandException;
-import by.teachmeskills.model.Cart;
+import by.teachmeskills.entities.Cart;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 

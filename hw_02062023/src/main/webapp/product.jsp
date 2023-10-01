@@ -36,8 +36,8 @@
             <div class="col m-1"><img
                     class="card-img"
                     style="width:350px;height:350px"
-                    src="${product.getImageName()}"
-                    alt=${product.getImageName()}></div>
+                    src="${product.getImagePath()}"
+                    alt=${product.getImagePath()}></div>
             <div class="col m-1" style="text-align: left"><p></p>
                 <h2>${product.getName()}</h2>
                 <h3 style="color:green">${product.getDescription()}</h3>

@@ -1,4 +1,4 @@
-package by.teachmeskills.model;
+package by.teachmeskills.entities;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Cart {
+public class Cart extends BaseEntity{
     private Map<Integer, Product> products;
     private int totalPrice = 0;
 

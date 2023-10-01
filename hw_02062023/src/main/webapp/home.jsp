@@ -23,8 +23,8 @@
                     <div class="card-body">
                         <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}">
                             <img class="card-img" style="width:160px;height:160px"
-                                 src="${category.getImageName()}"
-                                 alt=${category.getImageName()}></a>
+                                 src="${category.getImagePath()}"
+                                 alt=${category.getImagePath()}></a>
                         <div>
                             <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}"
                                class="btn">${category.getName()}</a>

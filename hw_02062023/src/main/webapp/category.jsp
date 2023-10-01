@@ -41,8 +41,8 @@
                             href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><img
                             class="card-img"
                             style="width:140px;height:140px"
-                            src="${product.getImageName()}"
-                            alt=${product.getImageName()}></a></div>
+                            src="${product.getImagePath()}"
+                            alt=${product.getImagePath()}></a></div>
                     <div class="col m-1" style="text-align: center"><p></p>
                         <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}">
                             <p>${product.getName()}</p>
