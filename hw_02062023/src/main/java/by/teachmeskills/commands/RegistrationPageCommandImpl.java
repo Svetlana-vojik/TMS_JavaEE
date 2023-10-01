@@ -41,7 +41,7 @@ public class RegistrationPageCommandImpl implements BaseCommand {
                     request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
                 }
             } catch (Exception e) {
-                log.warn(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
             request.setAttribute("info", "Некорректные данные.");

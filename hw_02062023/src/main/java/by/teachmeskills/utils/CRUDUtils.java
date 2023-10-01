@@ -61,7 +61,7 @@ public class CRUDUtils {
             psInsert.setString(5, user.getBirthday());
             psInsert.executeUpdate();
         } catch (SQLException e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
@@ -78,7 +78,7 @@ public class CRUDUtils {
                         .imageName(rs.getString(3)).productList(getProductsByCategoryId(rs.getString(1))).build());
             }
         } catch (Exception e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
@@ -98,7 +98,7 @@ public class CRUDUtils {
                         .description(rs.getString(3)).price(rs.getInt(4)).imageName(rs.getString(6)).build());
             }
         } catch (Exception e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }

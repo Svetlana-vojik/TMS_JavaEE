@@ -53,7 +53,7 @@ public class ConnectionPool {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 pool.add(DriverManager.getConnection(url, login, pass));
             } catch (SQLException | ClassNotFoundException e) {
-                log.warn(e.getMessage());
+                log.error(e.getMessage());
             }
         }
     }
@@ -64,7 +64,7 @@ public class ConnectionPool {
             pool.add(DriverManager.getConnection(url, login, pass));
             currentConnectionNumber++;
         } catch (SQLException | ClassNotFoundException e) {
-            log.warn("New connection wasn't add in the connection pool");
+            log.error("New connection wasn't add in the connection pool");
             throw new Exception("New connection wasn't add in the connection pool", e);
         }
     }
@@ -78,7 +78,7 @@ public class ConnectionPool {
             connection = pool.take();
         } catch (Exception ex) {
             Thread.currentThread().interrupt();
-            log.warn("Max count of connections was reached!");
+            log.error("Max count of connections was reached!");
         }
         return connection;
     }
@@ -92,7 +92,7 @@ public class ConnectionPool {
                 pool.put(connection);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                log.warn("Connection wasn't returned into pool properly");
+                log.error("Connection wasn't returned into pool properly");
             }
         }
     }
@@ -102,7 +102,7 @@ public class ConnectionPool {
             try {
                 s.close();
             } catch (SQLException e) {
-                log.warn("Cannot disconnect pool connection");
+                log.error("Cannot disconnect pool connection");
             }
         });
     }

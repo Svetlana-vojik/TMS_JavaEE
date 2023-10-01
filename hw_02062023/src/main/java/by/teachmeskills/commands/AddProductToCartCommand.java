@@ -31,7 +31,7 @@ public class AddProductToCartCommand implements BaseCommand {
             session.setAttribute("cart", cart);
             request.setAttribute("product", product);
         } catch (Exception e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         }
         return PagesPathEnum.PRODUCT_PAGE.getPath();
     }

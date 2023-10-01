@@ -20,7 +20,7 @@ public class RedirectProductPageCommandImpl implements BaseCommand {
             Product product = CRUDUtils.getProductById(productId);
             request.setAttribute(PRODUCT.getValue(), product);
         } catch (Exception e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         }
         return PRODUCT_PAGE.getPath();
     }
