@@ -1,5 +1,8 @@
 package by.teachmeskills.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class ConnectionPool {
     private static volatile ConnectionPool instance;
-
+    private final static Logger log = LogManager.getLogger(ConnectionPool.class);
     private static final String DB_PROPERTY_FILE = "application";
     private static final String DB_URL = "db.url";
     private static final String DB_LOGIN = "db.login";
@@ -50,7 +53,7 @@ public class ConnectionPool {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 pool.add(DriverManager.getConnection(url, login, pass));
             } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
         }
     }
@@ -61,6 +64,7 @@ public class ConnectionPool {
             pool.add(DriverManager.getConnection(url, login, pass));
             currentConnectionNumber++;
         } catch (SQLException | ClassNotFoundException e) {
+            log.error("New connection wasn't add in the connection pool");
             throw new Exception("New connection wasn't add in the connection pool", e);
         }
     }
@@ -74,7 +78,7 @@ public class ConnectionPool {
             connection = pool.take();
         } catch (Exception ex) {
             Thread.currentThread().interrupt();
-            System.out.println("Max count of connections was reached!");
+            log.error("Max count of connections was reached!");
         }
         return connection;
     }
@@ -88,7 +92,7 @@ public class ConnectionPool {
                 pool.put(connection);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.out.println("Connection wasn't returned into pool properly");
+                log.error("Connection wasn't returned into pool properly");
             }
         }
     }
@@ -98,7 +102,7 @@ public class ConnectionPool {
             try {
                 s.close();
             } catch (SQLException e) {
-                System.out.println("Cannot disconnect pool connection");
+                log.error("Cannot disconnect pool connection");
             }
         });
     }

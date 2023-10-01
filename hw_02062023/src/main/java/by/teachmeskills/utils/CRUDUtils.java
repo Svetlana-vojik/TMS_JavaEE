@@ -3,6 +3,8 @@ package by.teachmeskills.utils;
 import by.teachmeskills.model.Category;
 import by.teachmeskills.model.Product;
 import by.teachmeskills.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +18,7 @@ public class CRUDUtils {
     private CRUDUtils() {
     }
 
+    private final static Logger log = LogManager.getLogger(CRUDUtils.class);
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final String GET_ALL_CATEGORIES = "SELECT * FROM shop.categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM shop.products WHERE category_id=?";
@@ -33,10 +36,15 @@ public class CRUDUtils {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user = User.builder().email(resultSet.getString("email")).password(resultSet.getString("password")).build();
+                user = User.builder().email(resultSet.getString("email"))
+                        .password(resultSet.getString("password"))
+                        .surname(resultSet.getString("surname"))
+                        .name(resultSet.getString("name"))
+                        .birthday(resultSet.getString("birthday"))
+                        .build();
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.warn(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
@@ -53,7 +61,7 @@ public class CRUDUtils {
             psInsert.setString(5, user.getBirthday());
             psInsert.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
@@ -70,7 +78,7 @@ public class CRUDUtils {
                         .imageName(rs.getString(3)).productList(getProductsByCategoryId(rs.getString(1))).build());
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
@@ -90,7 +98,7 @@ public class CRUDUtils {
                         .description(rs.getString(3)).price(rs.getInt(4)).imageName(rs.getString(6)).build());
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             connectionPool.closeConnection(connection);
         }
