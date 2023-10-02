@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.LocalDate;
+
 import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
 
 public class RegistrationPageCommandImpl implements BaseCommand {
@@ -33,14 +35,19 @@ public class RegistrationPageCommandImpl implements BaseCommand {
             return PagesPathEnum.REGISTRATION_PAGE.getPath();
         }
 
-        if (ValidatorUtil.validateRegistration(email, name, surname, birthday,address)) {
+        if (ValidatorUtil.validateRegistration(email, name, surname, birthday, address)) {
             try {
                 User user = userService.findByEmailAndPassword(email, password);
                 if (user != null) {
                     request.setAttribute("info", "Данный пользователь уже зарегистрирован. Войдите в систему.");
                 } else {
-                    user = new User(email, password, name, surname, birthday,address);
-                    userService.create(user);
+                    userService.create(User.builder().email(email)
+                            .password(password)
+                            .name(name)
+                            .surname(surname)
+                            .birthday(LocalDate.parse(birthday))
+                            .address(address)
+                            .build());
                     request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
                 }
             } catch (Exception e) {
@@ -49,7 +56,6 @@ public class RegistrationPageCommandImpl implements BaseCommand {
         } else {
             request.setAttribute("info", "Некорректные данные.");
         }
-
         return REGISTRATION_PAGE.getPath();
     }
 }

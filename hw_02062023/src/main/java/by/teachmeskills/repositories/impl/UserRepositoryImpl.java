@@ -30,9 +30,9 @@ public class UserRepositoryImpl implements UserRepository {
             psInsert.setString(2, entity.getPassword());
             psInsert.setString(3, entity.getName());
             psInsert.setString(4, entity.getSurname());
-            psInsert.setString(5, entity.getBirthday());
+            psInsert.setString(5, String.valueOf(entity.getBirthday()));
             psInsert.setString(6, entity.getAddress());
-            psInsert.executeUpdate();
+            psInsert.execute();
         } catch (SQLException e) {
             log.error(e.getMessage());
         } finally {
@@ -54,7 +54,7 @@ public class UserRepositoryImpl implements UserRepository {
                         .password(resultSet.getString("password"))
                         .name(resultSet.getString("name"))
                         .surname(resultSet.getString("surname"))
-                        .birthday(resultSet.getString("birthday"))
+                        .birthday(LocalDate.parse(resultSet.getString("birthday")))
                         .balance(resultSet.getInt("balance"))
                         .address(resultSet.getString("address"))
                         .build());
@@ -71,8 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User update(User entity) {
         int userId = entity.getId();
         Connection connection = pool.getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS)) {
             preparedStatement.setString(1, entity.getAddress());
             preparedStatement.setInt(2, userId);
             preparedStatement.execute();
@@ -110,7 +109,7 @@ public class UserRepositoryImpl implements UserRepository {
                     .password(resultSet.getString("password"))
                     .name(resultSet.getString("name"))
                     .surname(resultSet.getString("surname"))
-                    .birthday(resultSet.getString("birthday"))
+                    .birthday(LocalDate.parse(resultSet.getString("birthday")))
                     .balance(resultSet.getInt("balance"))
                     .address(resultSet.getString("address")).build();
             return user;
@@ -130,14 +129,13 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            User user = User.builder().id(resultSet.getInt("id")).email(resultSet.getString("email"))
+            return User.builder().id(resultSet.getInt("id")).email(resultSet.getString("email"))
                     .password(resultSet.getString("password"))
                     .name(resultSet.getString("name"))
                     .surname(resultSet.getString("surname"))
-                    .birthday(resultSet.getString("birthday"))
+                    .birthday(LocalDate.parse(resultSet.getString("birthday")))
                     .balance(resultSet.getInt("balance"))
                     .address(resultSet.getString("address")).build();
-            return user;
         } catch (SQLException e) {
             log.error(e.getMessage());
         } finally {

@@ -36,7 +36,7 @@ public class ValidatorUtil {
     }
 
     private static boolean validateAddress(String address) {
-        return address.matches("[A-Za-z А-Яа-я]+");
+        return address.matches("[A-Za-z А-Яа-я0-9\\d]+");
     }
 
     public static void validateParamNotNull(String... parameters) throws RequestParamNullException {

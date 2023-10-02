@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS shop.users (
                                                 name VARCHAR(30) NOT NULL,
                                                 surname VARCHAR(60) NOT NULL,
                                                 birthday DATE NULL,
-                                                balance DECIMAL(10, 2) NULL,
+                                                balance INT NULL,
                                                 address VARCHAR(60) NOT NULL,
                                                 PRIMARY KEY (`id`),
                                                 UNIQUE INDEX IDX_USERS_USER_ID_UNIQUE (ID ASC),
@@ -114,10 +114,10 @@ CREATE TABLE IF NOT EXISTS shop.images (
 --------------------------------------------------------
     INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES(?, ?, ?, ?, ?, ?,?);
 
-    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user1@mail.ru', '1111', 'Sveta', 'Kot', '1989-12-29', 10.00, 'Minsk, Masherova 7-15');
-    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user2@mail.ru', '2222', 'Dima', 'Black', '1996-02-25', 2.50,'Minsk, Nezavisimisti 5-175');
-    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user3@mail.ru', '3333', 'Ira', 'Smith','1994-03-08', 0.00,'Minsk, Shugaeva 4-25');
-    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user4@mail.ru', '4444', 'Lena', 'White', '2000-11-15',13.15,'Minsk, Kiseleva 25-52');
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user1@mail.ru', '1111', 'Sveta', 'Kot', '1989-12-29', 10.00, 'Minsk Masherova 7-15');
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user2@mail.ru', '2222', 'Dima', 'Black', '1996-02-25', 2.50,'Minsk Nezavisimisti 5-175');
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user3@mail.ru', '3333', 'Ira', 'Smith','1994-03-08', 0.00,'Minsk Shugaeva 4-25');
+    INSERT INTO shop.users(email, password, name, surname, birthday, balance, address ) VALUES ('user4@mail.ru', '4444', 'Lena', 'White', '2000-11-15',13.15,'Minsk Kiseleva 25-52');
 --------------------------------------------------------
 --  DML for Table categories
 --------------------------------------------------------
