@@ -5,27 +5,27 @@ import java.util.LinkedList;
 public class MyLinkedList {
     public static void main(String[] args) {
 
-        LinkedList<String> states = new LinkedList<String>();
+        LinkedList<String> furniture = new LinkedList<String>();
 
-        states.add("Table");
-        states.add("Chair");
-        states.addLast("Wardrobe");
-        states.addFirst("Armchair");
-        states.add(1, "Mirror");
+        furniture.add("Table");
+        furniture.add("Chair");
+        furniture.addLast("Wardrobe");
+        furniture.addFirst("Armchair");
+        furniture.add(1, "Mirror");
 
-        System.out.printf("List has %d elements \n", states.size());
-        System.out.println(states.get(1));
-        states.set(1, "Lamp");
-        for (String state : states) {
+        System.out.printf("List has %d elements \n", furniture.size());
+        System.out.println(furniture.get(1));
+        furniture.set(1, "Lamp");
+        for (String state : furniture) {
 
             System.out.println(state);
         }
-        if (states.contains("Table")) {
+        if (furniture.contains("Table")) {
 
             System.out.println("List contains Table");
         }
-        states.remove("Table");
-        states.removeFirst();
-        states.removeLast();
+        furniture.remove("Table");
+        furniture.removeFirst();
+        furniture.removeLast();
     }
 }
