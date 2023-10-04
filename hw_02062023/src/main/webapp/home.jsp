@@ -14,6 +14,26 @@
 </head>
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+        <form class="form-inline">
+            <a href="${contextPath}/shop?command=home">
+                <button class="btn btn-outline-success" type="button">Главная</button>
+            </a>
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+            <a href="${contextPath}/shop?command=search">
+                <button class="btn btn-outline-success m-1" type="button">Поиск</button>
+            </a>
+            <a href="${contextPath}/shop?command=userPage">
+                <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
+            </a>
+            <a href="${contextPath}/shop?command=redirect-to-shopping-cart">
+                <button class="btn btn-outline-success m-1" type="button">Корзина</button>
+            </a>
+        </form>
+    </div>
+</nav>
 <h1 style="text-align: center">Каталог</h1>
 <div class="container-fluid mb-4">
     <c:if test="${not empty categories}">
