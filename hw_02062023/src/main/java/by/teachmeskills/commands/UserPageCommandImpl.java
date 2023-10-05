@@ -1,19 +1,24 @@
 package by.teachmeskills.commands;
 
+import by.teachmeskills.entities.Order;
+import by.teachmeskills.entities.Product;
+import by.teachmeskills.entities.User;
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.exceptions.CommandException;
-import by.teachmeskills.model.Order;
-import by.teachmeskills.model.Product;
-import by.teachmeskills.model.User;
-import by.teachmeskills.utils.CRUDUtils;
+import by.teachmeskills.services.ProductService;
+import by.teachmeskills.services.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserPageCommandImpl implements BaseCommand {
+    private final static Logger log = LogManager.getLogger(CategoryRedirectCommandImpl.class);
+    private static final ProductService productService = new ProductServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
@@ -22,9 +27,13 @@ public class UserPageCommandImpl implements BaseCommand {
         request.setAttribute("user", user);
         List<Product> productList1 = new ArrayList<>();
         List<Product> productList2 = new ArrayList<>();
-        productList1.add(CRUDUtils.getProductById("1"));
-        productList2.add(CRUDUtils.getProductById("4"));
-        productList2.add(CRUDUtils.getProductById("5"));
+
+        try {
+            productList1.add(productService.findById(1));
+            productList2.add(productService.findById(4));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
 
         Order order1 = new Order(1, LocalDate.now(), productList1);
         Order order2 = new Order(2, LocalDate.now(), productList2);

@@ -14,7 +14,8 @@ public enum RequestParamsEnum {
     PRODUCT("product"),
     PRODUCTS("products"),
     SHOPPING_CART_PRODUCTS("cartProductsList"),
-    PRODUCT_ID("product_id");
+    PRODUCT_ID("product_id"),
+    ADDRESS("address");
 
     private final String value;
 

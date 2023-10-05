@@ -43,8 +43,8 @@
                             <img
                                     class="card-img"
                                     style="width:100px;height:100px"
-                                    src="${product.getImageName()}"
-                                    alt=${product.getImageName()}></div>
+                                    src="${product.getImagePath()}"
+                                    alt=${product.getImagePath()}></div>
                         <div class="col m-1" style="text-align: left"><p></p>
                             <p>${product.getName()}</p>
                             <p>${product.getDescription()}</p>

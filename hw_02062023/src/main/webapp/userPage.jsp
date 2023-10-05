@@ -77,6 +77,15 @@
                         <h5 style="color:saddlebrown"> ${user.getEmail()}</h5>
                     </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Адрес</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h5 style="color:saddlebrown">${user.getAddress()}</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -84,13 +93,13 @@
 <section>
     <h5 class="mb-0" style="padding: 20px">История заказов</h5>
     <c:forEach items="${userOrders}" var="order">
-        <span style="padding: 20px">Номер заказа-${order.getId()} / Дата заказа-${order.getOrderDate()}</span>
+        <span style="padding: 20px">Номер заказа-${order.getId()} / Дата заказа-${order.getDate()}</span>
         <div class="col d-flex justify-content-start">
             <c:forEach items="${order.getProducts()}" var="product">
                 <div class="card mb-3" style="max-width: 540px;margin: 20px">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="${product.getImageName()}"
+                            <img src="${product.getImagePath()}"
                                  class="img-fluid rounded-start" alt="Card image">
                         </div>
                         <div class="col-md-8">

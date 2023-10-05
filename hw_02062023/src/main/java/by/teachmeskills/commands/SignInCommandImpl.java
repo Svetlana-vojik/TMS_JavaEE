@@ -3,13 +3,18 @@ package by.teachmeskills.commands;
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.enums.RequestParamsEnum;
 import by.teachmeskills.exceptions.CommandException;
-import by.teachmeskills.model.User;
-import by.teachmeskills.utils.CRUDUtils;
+import by.teachmeskills.entities.User;
+import by.teachmeskills.services.CategoryService;
+import by.teachmeskills.services.UserService;
+import by.teachmeskills.services.impl.CategoryServiceImpl;
+import by.teachmeskills.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 import static by.teachmeskills.utils.HttpRequestParamValidator.validateParamNotNull;
 
 public class SignInCommandImpl implements BaseCommand {
+    private final UserService userService = new UserServiceImpl();
+    private final CategoryService categoryService = new CategoryServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
@@ -18,14 +23,14 @@ public class SignInCommandImpl implements BaseCommand {
         validateParamNotNull(email);
         validateParamNotNull(password);
 
-        User user = CRUDUtils.getUser(email, password);
+        User user =userService.findByEmailAndPassword(email, password);
         return checkReceivedUser(user, request);
     }
 
     private String checkReceivedUser(User user, HttpServletRequest request) {
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            request.setAttribute("categories", CRUDUtils.getCategoriesFromDB());
+            request.setAttribute("categories",categoryService.read());
             return PagesPathEnum.HOME_PAGE.getPath();
         } else {
             request.setAttribute("error", "Пользователь не зарегистрирован!");

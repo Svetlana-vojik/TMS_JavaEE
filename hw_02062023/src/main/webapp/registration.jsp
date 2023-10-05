@@ -51,6 +51,12 @@
                            required>
                     <div class="invalid-feedback">Поле не может быть пустым!</div>
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control w-25" id="address" placeholder="Адрес"
+                           name="address"
+                           required>
+                    <div class="invalid-feedback">Поле не может быть пустым!</div>
+                </div>
                 <button id="registrationBtn" type="submit" class="btn btn-success">Регистрация</button>
             </form>
             <a class="btn btn-outline-dark" href="/shop?command=login">На страницу входа</a>
