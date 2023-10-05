@@ -20,6 +20,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     private static final String GET_PRODUCT = "SELECT * FROM shop.products WHERE id=?";
     private static final String GET_CATEGORY_PRODUCTS = "SELECT * FROM shop.products WHERE categoryId=?";
     private final static String UPDATE_DESCRIPTION_AND_PRICE_BY_ID = "UPDATE shop.products SET description = ?, price = ? WHERE id = ?";
+    private static final String GET_PRODUCTS_BY_WORD = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ? ORDER BY name ASC;";
 
     @Override
     public Product create(Product entity) {
@@ -111,11 +112,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> findByCategoryId(int id) {
+    public List<Product> findByCategoryId(int categoryId) {
         List<Product> productList = new ArrayList<>();
         Connection connection = pool.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(GET_CATEGORY_PRODUCTS)) {
-            statement.setInt(1, id);
+            statement.setInt(1, categoryId);
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 productList.add(Product.builder().id(set.getInt("id")).name(set.getString("name"))
@@ -123,6 +124,28 @@ public class ProductRepositoryImpl implements ProductRepository {
                         .categoryId(set.getInt("categoryId")).imagePath(set.getString("imagePath")).build());
             }
         } catch (SQLException e) {
+            log.error(e.getMessage());
+        } finally {
+            pool.closeConnection(connection);
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> findProductsByWord(String search) {
+        List<Product> productList = new ArrayList<>();
+        Connection connection = pool.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(GET_PRODUCTS_BY_WORD)) {
+            search = "%" + search.trim() + "%";
+            statement.setString(1, search);
+            statement.setString(2, search);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                productList.add(Product.builder().id(rs.getInt(1)).name(rs.getString(2))
+                        .description(rs.getString(3)).price(rs.getInt(4))
+                        .categoryId(rs.getInt(5)).imagePath(rs.getString(6)).build());
+            }
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);

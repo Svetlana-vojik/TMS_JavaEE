@@ -95,6 +95,9 @@
     document.getElementById('birthday').addEventListener('keyup', e => {
         document.getElementById('registrationBtn').disabled = e.target.value === "";
     });
+    document.getElementById('address').addEventListener('keyup', e => {
+        document.getElementById('registrationBtn').disabled = e.target.value === "";
+    });
 </script>
 </body>
 </html>

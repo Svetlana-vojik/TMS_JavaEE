@@ -11,6 +11,7 @@ public enum RequestParamsEnum {
     SHOPPING_CART("cart"),
     CATEGORY("category"),
     CATEGORY_ID("category_id"),
+    CATEGORIES("categories"),
     PRODUCT("product"),
     PRODUCTS("products"),
     SHOPPING_CART_PRODUCTS("cartProductsList"),
