@@ -83,7 +83,6 @@ public class UserRepositoryImpl implements UserRepository {
         return entity;
     }
 
-
     @Override
     public void delete(int id) {
         Connection connection = pool.getConnection();
