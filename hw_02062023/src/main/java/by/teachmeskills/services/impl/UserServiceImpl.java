@@ -21,11 +21,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User entity) {
-        return userRepository.update(entity);
-    }
-
-    @Override
     public void delete(int id) {
         userRepository.delete(id);
     }

@@ -1,7 +1,6 @@
 package by.teachmeskills.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -11,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class Product extends BaseEntity{
-    private int id;
     private String name;
     private String description;
     private int price;

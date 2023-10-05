@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     private final static Logger log = LogManager.getLogger(UserRepositoryImpl.class);
-    private static final String ADD_USER = "INSERT INTO shop.users (email,password,name,surname,birthday,balance,address) values (?,?,?,?,?,0,?)";
+    private static final String ADD_USER = "INSERT INTO shop.users (email,password,name,surname,birthday,balance,address) values (?,?,?,?,?,?,?)";
     private final static String GET_ALL_USERS = "SELECT * FROM  shop.users";
     private final static String UPDATE_ADDRESS = "UPDATE  shop.users SET address = ? WHERE id = ?";
     private final static String DELETE_USER = "DELETE FROM shop.users WHERE id=?";

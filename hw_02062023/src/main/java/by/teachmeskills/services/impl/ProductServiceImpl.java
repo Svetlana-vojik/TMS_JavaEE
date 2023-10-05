@@ -21,11 +21,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Product entity) {
-        return productRepository.update(entity);
-    }
-
-    @Override
     public void delete(int id) {
         productRepository.delete(id);
     }

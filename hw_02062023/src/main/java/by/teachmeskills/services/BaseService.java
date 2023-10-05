@@ -9,7 +9,5 @@ public interface BaseService<T extends BaseEntity> {
 
     List<T> read();
 
-    T update(T entity);
-
     void delete(int id);
 }

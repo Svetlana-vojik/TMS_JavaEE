@@ -93,7 +93,7 @@
 <section>
     <h5 class="mb-0" style="padding: 20px">История заказов</h5>
     <c:forEach items="${userOrders}" var="order">
-        <span style="padding: 20px">Номер заказа-${order.getId()} / Дата заказа-${order.getOrderDate()}</span>
+        <span style="padding: 20px">Номер заказа-${order.getId()} / Дата заказа-${order.getDate()}</span>
         <div class="col d-flex justify-content-start">
             <c:forEach items="${order.getProducts()}" var="product">
                 <div class="card mb-3" style="max-width: 540px;margin: 20px">

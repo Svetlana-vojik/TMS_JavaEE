@@ -14,8 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @SuperBuilder
-public class Order extends BaseEntity{
-    int id;
-    LocalDate orderDate;
+public class Order extends BaseEntity {
+    private LocalDate date;
+    private int price;
+    private int userId;
     List<Product> products;
+
+    public Order(int id, LocalDate date, List<Product> products) {
+        this.id = id;
+        this.date = date;
+        this.products = products;
+    }
 }

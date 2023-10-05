@@ -20,11 +20,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category update(Category entity) {
-        return categoryRepository.update(entity);
-    }
-
-    @Override
     public void delete(int id) {
         categoryRepository.delete(id);
     }
