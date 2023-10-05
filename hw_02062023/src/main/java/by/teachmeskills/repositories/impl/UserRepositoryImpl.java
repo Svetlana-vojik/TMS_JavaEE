@@ -31,7 +31,8 @@ public class UserRepositoryImpl implements UserRepository {
             psInsert.setString(3, entity.getName());
             psInsert.setString(4, entity.getSurname());
             psInsert.setString(5, String.valueOf(entity.getBirthday()));
-            psInsert.setString(6, entity.getAddress());
+            psInsert.setInt(6, entity.getBalance());
+            psInsert.setString(7, entity.getAddress());
             psInsert.execute();
         } catch (SQLException e) {
             log.error(e.getMessage());
@@ -40,7 +41,6 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return entity;
     }
-
 
     @Override
     public List<User> read() {

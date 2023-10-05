@@ -1,9 +1,9 @@
 package by.teachmeskills.commands;
 
+import by.teachmeskills.entities.User;
 import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.enums.RequestParamsEnum;
 import by.teachmeskills.exceptions.RequestParamNullException;
-import by.teachmeskills.entities.User;
 import by.teachmeskills.services.UserService;
 import by.teachmeskills.services.impl.UserServiceImpl;
 import by.teachmeskills.utils.ValidatorUtil;
@@ -36,22 +36,12 @@ public class RegistrationPageCommandImpl implements BaseCommand {
         }
 
         if (ValidatorUtil.validateRegistration(email, name, surname, birthday, address)) {
-            try {
-                User user = userService.findByEmailAndPassword(email, password);
-                if (user != null) {
-                    request.setAttribute("info", "Данный пользователь уже зарегистрирован. Войдите в систему.");
-                } else {
-                    userService.create(User.builder().email(email)
-                            .password(password)
-                            .name(name)
-                            .surname(surname)
-                            .birthday(LocalDate.parse(birthday))
-                            .address(address)
-                            .build());
-                    request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
-                }
-            } catch (Exception e) {
-                log.error(e.getMessage());
+            if (userService.findByEmailAndPassword(email, password) != null) {
+                request.setAttribute("info", "Данный пользователь уже зарегистрирован. Войдите в систему.");
+            } else {
+               User user= new User(email, password, name, surname, LocalDate.parse(birthday), 0, address);
+               userService.create(user);
+                request.setAttribute("info", "Пользователь успешно зарегистрирован. Войдите в систему.");
             }
         } else {
             request.setAttribute("info", "Некорректные данные.");

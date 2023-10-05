@@ -21,4 +21,7 @@ public class User extends BaseEntity{
     private LocalDate birthday;
     private int balance;
     private String address;
+
+    public User(String email, String password, String name, String surname, String birthday, int balance, String address) {
+    }
 }
