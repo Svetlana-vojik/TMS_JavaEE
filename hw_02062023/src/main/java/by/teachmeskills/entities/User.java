@@ -3,16 +3,16 @@ package by.teachmeskills.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
-@SuperBuilder
-@Data
-@AllArgsConstructor
-@ToString
 @EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@Data
+@SuperBuilder
+@NoArgsConstructor
 public class User extends BaseEntity{
     private String email;
     private String password;

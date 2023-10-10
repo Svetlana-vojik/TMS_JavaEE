@@ -1,11 +1,13 @@
 package by.teachmeskills.services;
 
 import by.teachmeskills.entities.BaseEntity;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 public interface BaseService<T extends BaseEntity> {
-    T create(T entity);
+    ModelAndView create(T entity);
+   // Product create(T entity);
 
     List<T> read();
 

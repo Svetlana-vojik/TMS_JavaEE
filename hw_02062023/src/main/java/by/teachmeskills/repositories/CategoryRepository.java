@@ -3,5 +3,5 @@ package by.teachmeskills.repositories;
 import by.teachmeskills.entities.Category;
 
 public interface CategoryRepository extends BaseRepository<Category> {
-    String findNameById(int id);
+    Category findNameById(int id);
 }

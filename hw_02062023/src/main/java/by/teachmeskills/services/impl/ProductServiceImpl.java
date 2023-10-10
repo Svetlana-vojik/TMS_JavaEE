@@ -4,6 +4,7 @@ import by.teachmeskills.entities.Product;
 import by.teachmeskills.repositories.ProductRepository;
 import by.teachmeskills.repositories.impl.ProductRepositoryImpl;
 import by.teachmeskills.services.ProductService;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findProductsByWord(String search) {
-        return productRepository.findProductsByWord(search);
+    public ModelAndView findProductsByWord(String search) {
+        return (ModelAndView) productRepository.findProductsByWord(search);
     }
 }

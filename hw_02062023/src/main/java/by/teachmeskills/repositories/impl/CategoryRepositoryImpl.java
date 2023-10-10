@@ -89,21 +89,24 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
-    public String findNameById(int id) {
-        String categoryName = null;
+    public Category findNameById(int id) {
+        Category category = null;
         Connection connection = pool.getConnection();
         try {
             PreparedStatement categoriesStatement = connection.prepareStatement(GET_CATEGORY_BY_ID);
             categoriesStatement.setString(1, String.valueOf(id));
             ResultSet rs = categoriesStatement.executeQuery();
             if (rs.next()) {
-                categoryName = rs.getString(1);
+                category = Category.builder().id(rs.getInt(1)).
+                        name(rs.getString(2)).
+                        imagePath(rs.getString(3)).
+                        rating(rs.getInt(4)).build();
             }
         } catch (Exception e) {
             log.warn(e.getMessage());
         } finally {
             pool.closeConnection(connection);
         }
-        return categoryName;
+        return category;
     }
 }

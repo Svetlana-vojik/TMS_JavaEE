@@ -1,6 +1,7 @@
 package by.teachmeskills.services.impl;
 
 import by.teachmeskills.entities.Order;
+import by.teachmeskills.entities.Product;
 import by.teachmeskills.repositories.OrderRepository;
 import by.teachmeskills.repositories.impl.OrderRepositoryImpl;
 import by.teachmeskills.services.OrderService;
@@ -10,7 +11,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository = new OrderRepositoryImpl();
     @Override
-    public Order create(Order entity) {
+    public Product create(Order entity) {
         return orderRepository.create(entity);
     }
 

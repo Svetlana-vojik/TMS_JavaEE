@@ -1,7 +1,8 @@
 package by.teachmeskills.services;
 
 import by.teachmeskills.entities.Category;
+import org.springframework.web.servlet.ModelAndView;
 
 public interface CategoryService extends BaseService<Category> {
-    String findNameById(int id);
+    ModelAndView findNameById(int id);
 }
