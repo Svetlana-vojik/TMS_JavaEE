@@ -17,18 +17,18 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="${contextPath}/shop?command=home">
+            <a href="${contextPath}/home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="${contextPath}/shop?command=search">
+            <a href="${contextPath}/search">
                 <button class="btn btn-outline-success m-1" type="button">Поиск</button>
             </a>
-            <a href="${contextPath}/shop?command=userPage">
+            <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="${contextPath}/shop?command=redirect-to-shopping-cart">
+            <a href="${contextPath}/cart/open">
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -41,12 +41,12 @@
             <c:forEach items="${categories}" var="category">
                 <div class="card w-25 m-1" type="category">
                     <div class="card-body">
-                        <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}">
+                        <a href="${contextPath}/category/${category.getId()}">
                             <img class="card-img" style="width:160px;height:160px"
                                  src="${category.getImagePath()}"
                                  alt=${category.getImagePath()}></a>
                         <div>
-                            <a href="${contextPath}/shop?command=category-redirect&category_id=${category.getId()}"
+                            <a href="${contextPath}/category/${category.getId()}"
                                class="btn">${category.getName()}</a>
                         </div>
                     </div>

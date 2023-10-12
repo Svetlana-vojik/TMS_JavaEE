@@ -17,18 +17,18 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="${contextPath}/shop?command=home">
+            <a href="${contextPath}/home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="${contextPath}/shop?command=search">
+            <a href="${contextPath}/search">
                 <button class="btn btn-outline-success m-1" type="button">Поиск</button>
             </a>
-            <a href="${contextPath}/shop?command=userPage">
+            <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="${contextPath}/shop?command=redirect-to-shopping-cart">
+            <a href="${contextPath}/cart/open">
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -37,7 +37,7 @@
 <h2 style="text-align: center">Корзина</h2>
 <p></p>
 <div class="container-fluid mb-4" style="text-align: center">
-    <c:forEach items="${cartProductsList}" var="product">
+    <c:forEach items="${cart.getProducts()}" var="product">
         <div class="card w-50 m-1" type="product">
             <div class="card-body">
                 <div class="card-body">
@@ -46,14 +46,14 @@
                             <img
                                     class="card-img"
                                     style="width:100px;height:100px"
-                                    src="${product.getImagePath()}"
+                                    src="${contextPath}/${product.getImagePath()}"
                                     alt=${product.getImagePath()}></div>
                         <div class="col m-1" style="text-align: left"><p></p>
                             <p>${product.getName()}</p>
                             <p>${product.getDescription()}</p>
                             <p>${product.getPrice()}</p></div>
                         <div class="col m-1"><a
-                                href="${contextPath}/shop?command=delete-product-from-cart&product_id=${product.getId()}">
+                                href="${contextPath}/cart/delete?product_id=${product.getId()}">
                             <p></p>
                             <button class="btn btn-danger m-2" style="text-align: right" type="button">Удалить</button>
                         </a></div>
@@ -64,7 +64,7 @@
     </c:forEach>
 </div>
 <div class="container-fluid mb-4" style="text-align: center">
-    <a href="#"
+    <a href="${contextPath}/order"
        style=" text-align: right"><p></p>
         <button class="btn btn-success m-2" type="button">Оформить заказ</button>
     </a></div>

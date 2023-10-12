@@ -15,6 +15,7 @@ import static by.teachmeskills.enums.PagesPathEnum.REGISTRATION_PAGE;
 @RestController
 @RequestMapping("/registration")
 public class RegistrationController {
+
     private final UserService userService;
 
     public RegistrationController(UserService userService) {

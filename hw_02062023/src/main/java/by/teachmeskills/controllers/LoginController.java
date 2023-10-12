@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.teachmeskills.enums.ShopConstants.USER;
 import static by.teachmeskills.enums.PagesPathEnum.LOGIN_PAGE;
+import static by.teachmeskills.enums.ShopConstants.USER;
 
 @RestController
 @SessionAttributes({USER})

@@ -23,8 +23,6 @@ public interface ShopConstants {
 
     String ADDRESS = "address";
 
-    String PHONE_NUMBER = "phoneNumber";
-
     String CART = "cart";
 
     String ORDERS = "orders";

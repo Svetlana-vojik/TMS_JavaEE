@@ -4,12 +4,13 @@ import by.teachmeskills.entities.Order;
 import by.teachmeskills.repositories.OrderRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.List;
-
+@Repository
 public class OrderRepositoryImpl implements OrderRepository {
     private final static Logger log = LogManager.getLogger(CategoryRepositoryImpl.class);
     private static final String CREATE_ORDER = "INSERT INTO shop.orders(date,price,userId";

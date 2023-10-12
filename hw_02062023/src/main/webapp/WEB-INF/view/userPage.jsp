@@ -17,18 +17,18 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="${contextPath}/shop?command=home">
+            <a href="${contextPath}/home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="${contextPath}shop?command=search">
+            <a href="${contextPath}/search">
                 <button class="btn btn-outline-success m-1" type="button">Поиск</button>
             </a>
-            <a href="${contextPath}/shop?command=userPage">
+            <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href=${contextPath}/shop?command=redirect-to-shopping-cart>
+            <a href=${contextPath}/cart/open>
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -95,14 +95,14 @@
 </section>
 <section>
     <h5 class="mb-0" style="padding: 20px">История заказов</h5>
-    <c:forEach items="${userOrders}" var="order">
+    <c:forEach items="${orders}" var="order">
         <span style="padding: 20px">Номер заказа-${order.getId()} / Дата заказа-${order.getDate()}</span>
         <div class="col d-flex justify-content-start">
             <c:forEach items="${order.getProducts()}" var="product">
                 <div class="card mb-3" style="max-width: 540px;margin: 20px">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="${product.getImagePath()}"
+                            <img src="${contextPath}/images/${product.getImagePath()}"
                                  class="img-fluid rounded-start" alt="Card image">
                         </div>
                         <div class="col-md-8">

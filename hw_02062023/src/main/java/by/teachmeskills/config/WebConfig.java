@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("by.teachmeskills.shop")
+@ComponentScan(basePackages ="by.teachmeskills")
 public class WebConfig implements WebMvcConfigurer {
     @Bean
     public ViewResolver urlBasedViewResolver() {

@@ -59,7 +59,7 @@
                 </div>
                 <button id="registrationBtn" type="submit" class="btn btn-success">Регистрация</button>
             </form>
-            <a class="btn btn-outline-dark" href="/shop?command=login">На страницу входа</a>
+            <a class="btn btn-outline-dark" href="/login">На страницу входа</a>
         </div>
     </div>
 </div>

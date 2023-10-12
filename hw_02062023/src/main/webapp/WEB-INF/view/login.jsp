@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div class="container">
     <c:if test="${not empty info}">
         <p style="text-align: center" class="text-danger">${info}</p>
@@ -28,7 +29,7 @@
             <form method="post" class="needs-validation" novalidate>
                 <input type="hidden" name="command" value="login">
                 <div class="form-group">
-             <label for="email">Имя пользователя:</label>
+                    <label for="email">Имя пользователя:</label>
                     <input type="text" class="form-control" id="email" placeholder="Введите email" name="email"
                            required>
                     <div class="invalid-feedback">Имя пользователя должно быть введено!</div>
@@ -40,7 +41,7 @@
                     <div class="invalid-feedback">Пароль должен быть введен!</div>
                 </div>
                 <button id="loginBtn" class="btn btn-primary">Войти</button>
-                <a href="${contextPath}/shop?command=registration">
+                <a href="${contextPath}/registration">
                     <button class="btn btn-danger" type="button">Регистрация</button>
                 </a>
             </form>

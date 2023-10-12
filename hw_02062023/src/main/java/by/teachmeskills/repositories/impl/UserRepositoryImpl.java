@@ -4,6 +4,7 @@ import by.teachmeskills.entities.User;
 import by.teachmeskills.repositories.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     private final static Logger log = LogManager.getLogger(UserRepositoryImpl.class);
     private static final String ADD_USER = "INSERT INTO shop.users (email,password,name,surname,birthday,balance,address) values (?,?,?,?,?,?,?)";

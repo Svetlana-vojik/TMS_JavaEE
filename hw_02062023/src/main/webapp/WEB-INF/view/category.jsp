@@ -16,18 +16,18 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="${contextPath}/shop?command=home">
+            <a href="${contextPath}/home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="${contextPath}/shop?command=search">
+            <a href="${contextPath}/search">
                 <button class="btn btn-outline-success m-1" type="button">Поиск</button>
             </a>
-            <a href="${contextPath}/shop?command=userPage">
+            <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href=${contextPath}/shop?command=redirect-to-shopping-cart>
+            <a href=${contextPath}/cart/open>
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
@@ -41,13 +41,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col m-1"><a
-                            href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><img
+                            href="${contextPath}/products/${product.getId()}"><img
                             class="card-img"
                             style="width:140px;height:140px"
-                            src="${product.getImagePath()}"
+                            src="${contextPath}/${product.getImagePath()}"
                             alt=${product.getImagePath()}></a></div>
                     <div class="col m-1" style="text-align: center"><p></p>
-                        <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}">
+                        <a href="${contextPath}/products/${product.getId()}">
                             <p>${product.getName()}</p>
                         </a>
                         <p>${product.getDescription()}</p>

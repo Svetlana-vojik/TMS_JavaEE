@@ -7,14 +7,17 @@ import by.teachmeskills.enums.PagesPathEnum;
 import by.teachmeskills.repositories.CategoryRepository;
 import by.teachmeskills.repositories.ProductRepository;
 import by.teachmeskills.services.CategoryService;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
 import static by.teachmeskills.enums.ShopConstants.CATEGORY;
-
+@Service
 public class CategoryServiceImpl implements CategoryService {
+
+
     private final CategoryRepository categoryRepository;
     private final ProductRepository productService;
 
@@ -22,6 +25,8 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepository = categoryRepository;
         this.productService = productService;
     }
+
+
     @Override
     public ModelAndView create(Category entity) {
         return new ModelAndView();
@@ -30,6 +35,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> read() {
         return categoryRepository.read();
+    }
+
+    @Override
+    public Category update(Category entity) {
+        return null;
     }
 
     @Override

@@ -4,6 +4,7 @@ import by.teachmeskills.entities.Product;
 import by.teachmeskills.repositories.ProductRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
     private final static Logger log = LogManager.getLogger(CategoryRepositoryImpl.class);
     private static final String ADD_PRODUCT = "INSERT INTO shop.products(name, description, price, categoryId, imagePath) VALUES(?,?,?,?,?)";

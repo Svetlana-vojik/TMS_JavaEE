@@ -4,6 +4,7 @@ import by.teachmeskills.entities.Category;
 import by.teachmeskills.repositories.CategoryRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class CategoryRepositoryImpl implements CategoryRepository {
     private final static Logger log = LogManager.getLogger(CategoryRepositoryImpl.class);
     private static final String GET_ALL_CATEGORIES = "SELECT * FROM shop.categories";

@@ -1,33 +1,41 @@
 package by.teachmeskills.services.impl;
 
 import by.teachmeskills.entities.Order;
-import by.teachmeskills.entities.Product;
 import by.teachmeskills.repositories.OrderRepository;
 import by.teachmeskills.repositories.impl.OrderRepositoryImpl;
 import by.teachmeskills.services.OrderService;
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
-    OrderRepository orderRepository = new OrderRepositoryImpl();
+    private final OrderRepository orderRepository = new OrderRepositoryImpl();
+
     @Override
-    public Product create(Order entity) {
-        return orderRepository.create(entity);
+    public ModelAndView create(Order entity) {
+        return null;
     }
 
     @Override
     public List<Order> read() {
-        return orderRepository.read();
+        return null;
+    }
+
+    @Override
+    public Order update(Order entity) {
+        return null;
     }
 
     @Override
     public void delete(int id) {
-        orderRepository.delete(id);
+
     }
 
     @Override
-    public Order findById(int id) {
-        return orderRepository.findById(id);
+    public ModelAndView findById(int id) {
+        return new ModelAndView();
     }
 
     @Override

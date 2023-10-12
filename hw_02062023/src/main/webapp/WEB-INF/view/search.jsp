@@ -17,22 +17,22 @@
 <nav class="navbar navbar-light">
     <div class="container-fluid">
         <form class="form-inline">
-            <a href="${contextPath}/shop?command=home">
+            <a href="${contextPath}/home">
                 <button class="btn btn-outline-success" type="button">Главная</button>
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="${contextPath}/shop?command=userPage">
+            <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="${contextPath}/shop?command=redirect-to-shopping-cart">
+            <a href="${contextPath}/cart">
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>
     </div>
 </nav>
 <div class="container">
-    <form class="input-group mb-3" method="post" action="shop?command=search" style="text-align: center">
+    <form class="input-group mb-3" method="post" action="${contextPath}/search" style="text-align: center">
         <label for="searchString"></label>
         <input type="search" name="searchString" id="searchString" class="form-control"
                placeholder=" Поиск ">
@@ -49,7 +49,7 @@
 <div class="container">
     <div class="row"><p></p>
         <div class="col"><b>Фильтр</b><br><br>
-            <form method="post" action="shop?command=search">
+            <form method="post" action="${contextPath}/search">
                 <div class="dropdown">
                     <label for="categories"></label>
                     <select class="col-sm-7" id="categories" name="categories">
@@ -87,19 +87,19 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col m-1"><a
-                                    href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}"><img
+                                    href="${contextPath}/products/${product.getId()}"><img
                                     class="card-img"
                                     style="width:100px;height:100px"
                                     src="${product.getImagePath()}"
                                     alt=${product.getImagePath()}></a></div>
                             <div class="col m-1" style="text-align: left">
-                                <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}">
+                                <a href="${contextPath}/products/${product.getId()}">
                                     <p>${product.getName()}</p>
                                 </a>
                                 <p>${product.getDescription()}</p>
                                 <p>${product.getPrice()}</p></div>
                             <div class="col m-1"><br>
-                                <a href="${contextPath}/shop?command=product-redirect&product_id=${product.getId()}">
+                                <a href="${contextPath}/products/${product.getId()}">
                                     <button class="btn btn-outline-success m-2" style="text-align: center"
                                             type="button">
                                         Смотреть

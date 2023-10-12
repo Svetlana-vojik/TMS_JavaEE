@@ -1,10 +1,11 @@
 package by.teachmeskills.services;
 
 import by.teachmeskills.entities.Order;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 public interface OrderService extends BaseService<Order> {
-    Order findById(int id);
+    ModelAndView findById(int id);
     List<Order> findByUserId(int id);
 }
