@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ModelAndView authenticate(User user) {
+        ModelAndView modelAndView = new ModelAndView();
         ModelMap modelMap = new ModelMap();
         if (Optional.ofNullable(user).isPresent()
                 && Optional.ofNullable(user.getEmail()).isPresent()
@@ -82,14 +83,14 @@ public class UserServiceImpl implements UserService {
             if (Optional.ofNullable(loggedUser).isPresent()) {
                 List<Category> categoriesList = categoryService.read();
                 modelMap.addAttribute(CATEGORIES, categoriesList);
-                modelMap.addAttribute(USER, loggedUser);
-                return new ModelAndView(HOME_PAGE.getPath(), modelMap);
+                modelAndView.setViewName(HOME_PAGE.getPath());
+                modelAndView.addAllObjects(modelMap);
             } else {
                 modelMap.addAttribute("error", "Пользователь не зарегистрирован!");
                 return new ModelAndView(LOGIN_PAGE.getPath(), modelMap);
             }
         }
-        return new ModelAndView(LOGIN_PAGE.getPath(), modelMap);
+        return modelAndView;
     }
 
     @Override
