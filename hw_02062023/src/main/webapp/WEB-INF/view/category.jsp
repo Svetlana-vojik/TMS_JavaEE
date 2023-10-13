@@ -51,7 +51,7 @@
                             <p>${product.getName()}</p>
                         </a>
                         <p>${product.getDescription()}</p>
-                        <p>${product.getPrice()}</p></div>
+                        <p>Цена: ${product.getPrice()}</p></div>
                 </div>
             </div>
         </div>

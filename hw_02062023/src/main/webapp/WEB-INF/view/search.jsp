@@ -97,7 +97,7 @@
                                     <p>${product.getName()}</p>
                                 </a>
                                 <p>${product.getDescription()}</p>
-                                <p>${product.getPrice()}</p></div>
+                                <p>Цена: ${product.getPrice()}</p></div>
                             <div class="col m-1"><br>
                                 <a href="${contextPath}/products/${product.getId()}">
                                     <button class="btn btn-outline-success m-2" style="text-align: center"
