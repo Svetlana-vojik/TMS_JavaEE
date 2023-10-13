@@ -5,7 +5,6 @@ import by.teachmeskills.shop.repositories.OrderRepository;
 import by.teachmeskills.shop.repositories.impl.OrderRepositoryImpl;
 import by.teachmeskills.shop.services.OrderService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -14,32 +13,37 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository = new OrderRepositoryImpl();
 
     @Override
-    public ModelAndView create(Order entity) {
-        return null;
-    }
+    public Order create(Order entity) {
+        return orderRepository.create(entity);
+           }
 
     @Override
     public List<Order> read() {
-        return null;
+        return orderRepository.read();
     }
 
     @Override
     public Order update(Order entity) {
-        return null;
+        return orderRepository.update(entity);
     }
 
     @Override
     public void delete(int id) {
-
+        orderRepository.delete(id);
     }
 
     @Override
-    public ModelAndView findById(int id) {
-        return new ModelAndView();
+    public Order findById(int id) {
+        return orderRepository.findById(id);
     }
 
     @Override
     public List<Order> findByUserId(int id) {
+        return orderRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Order> getOrdersByUserId(int id) {
         return orderRepository.findByUserId(id);
     }
 }

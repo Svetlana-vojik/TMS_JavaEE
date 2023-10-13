@@ -33,7 +33,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             statement.setInt(4, entity.getCategoryId());
             statement.setString(5, entity.getImagePath());
             statement.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -52,7 +52,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                         .description(set.getString("description")).price(set.getInt("price"))
                         .categoryId(set.getInt("categoryId")).imagePath(set.getString("imagePath")).build());
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -86,7 +86,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT)) {
             statement.setInt(1, id);
             statement.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -104,7 +104,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             product = Product.builder().id(set.getInt("id")).name(set.getString("name"))
                     .description(set.getString("description")).price(set.getInt("price"))
                     .categoryId(set.getInt("categoryId")).imagePath(set.getString("imagePath")).build();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -124,7 +124,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                         .description(set.getString("description")).price(set.getInt("price"))
                         .categoryId(set.getInt("categoryId")).imagePath(set.getString("imagePath")).build());
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);

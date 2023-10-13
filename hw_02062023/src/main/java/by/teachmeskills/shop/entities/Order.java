@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,14 +15,14 @@ import java.util.List;
 @Data
 @SuperBuilder
 public class Order extends BaseEntity {
-    private LocalDate date;
+    private LocalDateTime orderDate;
     private int price;
     private int userId;
     List<Product> products;
 
-    public Order(int id, LocalDate date, List<Product> products) {
+    public Order(int id, LocalDateTime orderDate, List<Product> products) {
         this.id = id;
-        this.date = date;
+        this.orderDate = orderDate;
         this.products = products;
     }
 }

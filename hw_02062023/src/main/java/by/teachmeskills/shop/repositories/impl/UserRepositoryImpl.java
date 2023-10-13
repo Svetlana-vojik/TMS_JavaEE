@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
             psInsert.setInt(6, entity.getBalance());
             psInsert.setString(7, entity.getAddress());
             psInsert.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -60,7 +59,7 @@ public class UserRepositoryImpl implements UserRepository {
                         .address(resultSet.getString("address"))
                         .build());
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -90,7 +89,7 @@ public class UserRepositoryImpl implements UserRepository {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_USER)) {
             statement.setInt(1, id);
             statement.execute();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             log.error(ex.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -113,7 +112,7 @@ public class UserRepositoryImpl implements UserRepository {
                     .balance(resultSet.getInt("balance"))
                     .address(resultSet.getString("address")).build();
             return user;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -136,7 +135,7 @@ public class UserRepositoryImpl implements UserRepository {
                     .birthday(LocalDate.parse(resultSet.getString("birthday")))
                     .balance(resultSet.getInt("balance"))
                     .address(resultSet.getString("address")).build();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);

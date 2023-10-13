@@ -21,6 +21,6 @@ public class UserPageController {
 
     @GetMapping
     public ModelAndView openAccountPage(@SessionAttribute(USER) User user) {
-        return userService.findUserOrders(user);
+        return userService.generateAccountPage(user);
     }
 }

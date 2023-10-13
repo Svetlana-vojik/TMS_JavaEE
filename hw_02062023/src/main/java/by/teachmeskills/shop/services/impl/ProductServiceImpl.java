@@ -15,6 +15,7 @@ import static by.teachmeskills.shop.PagesPathEnum.SEARCH_PAGE;
 import static by.teachmeskills.shop.ShopConstants.CATEGORIES;
 import static by.teachmeskills.shop.ShopConstants.PRODUCT;
 import static by.teachmeskills.shop.ShopConstants.PRODUCTS;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
@@ -26,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ModelAndView create(Product entity) {
-        return null;
+    public Product create(Product entity) {
+        return productRepository.create(entity);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Product entity) {
-        return null;
+        return productRepository.update(entity);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
         ModelAndView modelAndView = new ModelAndView(PagesPathEnum.PRODUCT_PAGE.getPath());
         modelAndView.addObject(PRODUCT, productRepository.findById(id));
         return modelAndView;
-         }
+    }
 
     @Override
     public List<Product> findByCategoryId(int id) {

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             statement.setString(1, entity.getImagePath());
             statement.setInt(1, entity.getRating());
             statement.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);
@@ -63,7 +62,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_CATEGORY_BY_ID)) {
             statement.setInt(1, id);
             statement.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         } finally {
             pool.closeConnection(connection);

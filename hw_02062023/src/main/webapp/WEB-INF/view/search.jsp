@@ -25,7 +25,7 @@
             <a href="${contextPath}/userPage">
                 <button class="btn btn-outline-success m-1" type="button">Кабинет</button>
             </a>
-            <a href="${contextPath}/cart">
+            <a href="${contextPath}/cart/open">
                 <button class="btn btn-outline-success m-1" type="button">Корзина</button>
             </a>
         </form>

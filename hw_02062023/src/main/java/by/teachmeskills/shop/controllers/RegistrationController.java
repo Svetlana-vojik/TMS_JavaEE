@@ -29,7 +29,7 @@ public class RegistrationController {
 
     @PostMapping
     public ModelAndView register(@ModelAttribute(USER) User user){
-        return userService.create(user);
+        return userService.createUser(user);
     }
 
     @ModelAttribute(USER)

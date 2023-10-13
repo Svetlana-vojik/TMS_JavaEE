@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static by.teachmeskills.shop.ShopConstants.CATEGORY;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -28,8 +29,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public ModelAndView create(Category entity) {
-        return new ModelAndView();
+    public Category create(Category entity) {
+        return categoryRepository.create(entity);
+
     }
 
     @Override
@@ -39,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category update(Category entity) {
-        return null;
+        return categoryRepository.update(entity);
     }
 
     @Override
