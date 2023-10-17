@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @AllArgsConstructor
 @SuperBuilder
-public class Product extends BaseEntity{
+public class Product extends BaseEntity {
     private String name;
     private String description;
     private int price;

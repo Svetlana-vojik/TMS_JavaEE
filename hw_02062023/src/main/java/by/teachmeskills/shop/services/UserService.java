@@ -13,5 +13,4 @@ public interface UserService extends BaseService<User> {
     ModelAndView generateAccountPage(User user);
 
     ModelAndView createUser(User entity);
-
 }

@@ -17,8 +17,6 @@ import static by.teachmeskills.shop.ShopConstants.CATEGORY;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-
-
     private final CategoryRepository categoryRepository;
     private final ProductRepository productService;
 
@@ -26,7 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepository = categoryRepository;
         this.productService = productService;
     }
-
 
     @Override
     public Category create(Category entity) {

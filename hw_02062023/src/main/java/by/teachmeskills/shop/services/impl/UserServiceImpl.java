@@ -7,7 +7,6 @@ import by.teachmeskills.shop.entities.User;
 import by.teachmeskills.shop.repositories.UserRepository;
 import by.teachmeskills.shop.services.CategoryService;
 import by.teachmeskills.shop.services.OrderService;
-import by.teachmeskills.shop.services.ProductService;
 import by.teachmeskills.shop.services.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,14 +36,12 @@ public class UserServiceImpl implements UserService {
     private final static Logger log = LogManager.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final CategoryService categoryService;
-    private final ProductService productService;
     private final OrderService orderService;
 
 
-    public UserServiceImpl(UserRepository userRepository, CategoryService categoryService, ProductService productService, OrderService orderService) {
+    public UserServiceImpl(UserRepository userRepository, CategoryService categoryService, OrderService orderService) {
         this.userRepository = userRepository;
         this.categoryService = categoryService;
-        this.productService = productService;
         this.orderService = orderService;
     }
 

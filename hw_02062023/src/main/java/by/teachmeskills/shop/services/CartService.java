@@ -16,7 +16,6 @@ import static by.teachmeskills.shop.ShopConstants.PRODUCT;
 
 @Service
 public class CartService {
-
     private final ProductRepository productRepository = new ProductRepositoryImpl();
 
     public ModelAndView addProductToCart(int productId, Cart cart) {

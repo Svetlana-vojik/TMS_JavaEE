@@ -19,7 +19,6 @@ public class ConnectionPool {
     private static final String DB_PASS = "db.pass";
     private static final int MAX_CONNECTION_COUNT = 10;
     private static final int MIN_CONNECTION_COUNT = 5;
-
     private static final String url;
     private static final String login;
     private static final String pass;

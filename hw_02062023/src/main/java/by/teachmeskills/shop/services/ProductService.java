@@ -9,5 +9,6 @@ public interface ProductService extends BaseService<Product> {
     ModelAndView findById(int id);
 
     List<Product> findByCategoryId(int id);
+
     ModelAndView findProductsByWord(String search);
 }
