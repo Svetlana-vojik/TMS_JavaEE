@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS shop.users (
     DROP TABLE IF EXISTS shop.orders;
     CREATE TABLE IF NOT EXISTS shop.orders (
                                             id INT NOT NULL AUTO_INCREMENT,
-                                            date DATETIME NOT NULL,
+                                            orderDate Timestamp NOT NULL,
                                             price INT NOT NULL,
                                             userId INT NOT NULL,
                                             PRIMARY KEY (ID),
